@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { siteData } from '../data/siteData';
 import { MessageCircle, ArrowUp } from 'lucide-react';
 import { InstagramIcon } from './Icons';
@@ -9,12 +10,14 @@ export default function Footer() {
   };
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Collaborations", href: "#collaborations" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "Live Artistry", href: "/live-experiences" },
+    { name: "Collaborations", href: "/collaborations" },
+    { name: "Why Ruwaa", href: "/why-ruwaa" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -23,22 +26,22 @@ export default function Footer() {
       {/* Decorative large Arabic calligraphy watermark in footer */}
       <div 
         aria-hidden="true" 
-        className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-0 opacity-[0.03] text-white font-arabic text-[140px] md:text-[220px] whitespace-nowrap leading-none"
+        className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 bottom-0 opacity-[0.03] text-white font-arabic text-[120px] sm:text-[180px] md:text-[220px] whitespace-nowrap leading-none"
       >
         روعة الفن
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Brand Header */}
         <div className="text-center space-y-4 max-w-2xl mx-auto pb-12 border-b border-[#2D2824]">
-          <h2 className="font-serif text-3xl md:text-4xl tracking-[0.2em] font-light text-white">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] font-light text-white">
             RUWAA ARTISTRY
           </h2>
-          <p className="font-serif italic text-gold-300 text-lg md:text-xl font-light">
+          <p className="font-serif italic text-gold-300 text-base sm:text-lg md:text-xl font-light">
             The Art of Calligraphy, Crafted with Elegance.
           </p>
-          <p className="text-xs uppercase tracking-[0.25em] text-stone-400 font-sans leading-relaxed">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] text-stone-400 font-sans leading-relaxed">
             Bespoke Arabic &amp; English Calligraphy | Luxury Engraving | Live Artistry | Personalized Keepsakes
           </p>
         </div>
@@ -47,15 +50,15 @@ export default function Footer() {
         <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6 border-b border-[#2D2824]">
           
           {/* Navigation Links */}
-          <nav className="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-[0.2em] text-stone-400">
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-[11px] sm:text-xs uppercase tracking-[0.18em] text-stone-400">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="hover:text-gold-300 transition-colors"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -93,7 +96,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Credits & Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-sans tracking-wider gap-4">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-[11px] text-stone-500 font-sans tracking-wider gap-4 text-center sm:text-left">
           <p>
             Instagram: <a href={siteData.brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:underline">@ruwaa_artistry</a>
           </p>

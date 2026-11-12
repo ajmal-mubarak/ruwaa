@@ -144,3 +144,4 @@ export default function Portfolio({ onOpenBooking }) {
     </section>
   );
 }
+

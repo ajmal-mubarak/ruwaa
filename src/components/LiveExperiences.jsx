@@ -203,3 +203,4 @@ export default function LiveExperiences({ onOpenBooking }) {
     </section>
   );
 }
+

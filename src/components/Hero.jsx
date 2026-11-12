@@ -257,3 +257,4 @@ export default function Hero({ onOpenBooking }) {
     </section>
   );
 }
+

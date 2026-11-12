@@ -156,3 +156,4 @@ export default function BookingModal({ isOpen, onClose, initialService }) {
     </div>
   );
 }
+
