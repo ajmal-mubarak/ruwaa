@@ -159,3 +159,4 @@ export default function AboutPage({ onOpenBooking }) {
     </div>
   );
 }
+

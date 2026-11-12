@@ -32,3 +32,4 @@ export default function CollaborationsPage({ onOpenBooking }) {
     </div>
   );
 }
+
