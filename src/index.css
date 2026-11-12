@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    background-color: #FAF7F2;
+    background-color: #FFFFFF;
     color: #262220;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
@@ -14,12 +14,16 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
-  .font-script {
-    font-family: 'Alex Brush', cursive;
+  .font-calligraphy {
+    font-family: 'Allura', 'Caveat', cursive;
   }
 
-  .font-pinyon {
-    font-family: 'Pinyon Script', cursive;
+  .font-brush {
+    font-family: 'Caveat', cursive;
+  }
+
+  .font-script {
+    font-family: 'Allura', 'Alex Brush', cursive;
   }
 
   .font-arabic {
@@ -27,54 +31,25 @@
   }
 }
 
-/* Custom luxury scrollbar */
+/* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F2;
+  background: #FFFFFF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D9CEBF;
-  border-radius: 4px;
+  background: #E2DCD5;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B38E5D;
+  background: #A38257;
 }
 
-/* Subtle botanical watermark background */
-.bg-botanical-pattern {
-  background-image: radial-gradient(#C5A880 0.75px, transparent 0.75px), radial-gradient(#D9CEBF 0.75px, #FAF7F2 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
+/* Clean standard image hover effect */
+.standard-image-hover {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
 }
-
-/* Luxury card shadow */
-.luxury-card-shadow {
-  box-shadow: 0 20px 40px -15px rgba(26, 23, 21, 0.07), 0 0 0 1px rgba(26, 23, 21, 0.05);
+.standard-image-hover:hover {
+  transform: scale(1.03);
 }
-
-.luxury-card-hover {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.luxury-card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 25px 50px -12px rgba(26, 23, 21, 0.12), 0 0 0 1px rgba(184, 142, 75, 0.2);
-}
-
-/* Gold shimmer effect */
-.gold-shimmer {
-  background: linear-gradient(90deg, #9B7436 0%, #E8D5B5 50%, #9B7436 100%);
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shine 4s linear infinite;
-}
-
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
-}
-

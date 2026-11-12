@@ -36,7 +36,9 @@ export default {
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Cinzel', 'Georgia', 'serif'],
         display: ['"Cinzel"', 'serif'],
-        script: ['"Alex Brush"', '"Pinyon Script"', 'cursive'],
+        script: ['"Allura"', '"Alex Brush"', 'cursive'],
+        calligraphy: ['"Allura"', '"Caveat"', 'cursive'],
+        brush: ['"Caveat"', 'cursive'],
         arabic: ['"Amiri"', '"Aref Ruqaa"', 'serif'],
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
