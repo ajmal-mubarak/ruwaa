@@ -33,36 +33,36 @@ export default function Navbar({ onOpenBooking }) {
   return (
     <header
       className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
-        isScrolled ? 'shadow-xs border-b border-stone-200/80 py-3' : 'border-b border-stone-100 py-4 sm:py-5'
+        isScrolled ? 'shadow-xs border-b border-stone-200/80' : 'border-b border-stone-100'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between">
         
-        {/* Left: Brand Logo */}
-        <div className="shrink-0 flex items-center">
-          <Link to="/" className="flex items-center gap-3 group focus:outline-none">
-            <div className="w-10 h-10 rounded-full border border-stone-300 flex items-center justify-center font-calligraphy text-2xl text-stone-900 group-hover:border-[#A38257] group-hover:text-[#A38257] transition-colors shrink-0">
+        {/* Left: Brand Logo (Sleek, Compact, Never Collides) */}
+        <div className="shrink-0 pr-4 lg:pr-8">
+          <Link to="/" className="flex items-center gap-2.5 group focus:outline-none">
+            <div className="w-8 h-8 rounded-full border border-stone-300 flex items-center justify-center font-calligraphy text-lg text-stone-900 group-hover:border-[#A38257] group-hover:text-[#A38257] transition-colors shrink-0">
               R
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl tracking-[0.14em] font-medium text-stone-900 group-hover:text-[#A38257] transition-colors whitespace-nowrap">
+              <span className="font-serif text-base sm:text-lg tracking-[0.14em] font-medium text-stone-900 group-hover:text-[#A38257] transition-colors whitespace-nowrap">
                 Ruwaa Artistry
               </span>
-              <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.22em] text-stone-400 font-sans -mt-0.5 whitespace-nowrap">
+              <span className="text-[7.5px] uppercase tracking-[0.2em] text-stone-400 font-sans -mt-0.5 whitespace-nowrap">
                 Qatar &amp; Saudi Arabia
               </span>
             </div>
           </Link>
         </div>
 
-        {/* Center: Wide, Perfectly Centered Nav Items */}
-        <nav className="hidden xl:flex items-center justify-center gap-8 2xl:gap-11 px-4 flex-1">
+        {/* Center: Delicate, Centered Nav Items with Proportional Spacing */}
+        <nav className="hidden lg:flex items-center justify-center gap-4 xl:gap-6 2xl:gap-8 px-2">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.href}
               className={({ isActive }) =>
-                `text-xs uppercase tracking-[0.2em] font-sans whitespace-nowrap transition-colors relative py-1 focus:outline-none ${
+                `text-[11px] uppercase tracking-[0.14em] font-sans whitespace-nowrap transition-colors relative py-1 focus:outline-none ${
                   isActive
                     ? 'text-stone-900 font-semibold after:w-full after:bg-[#A38257]'
                     : 'text-stone-500 hover:text-stone-900 after:w-0 hover:after:w-full after:bg-stone-300'
@@ -74,74 +74,74 @@ export default function Navbar({ onOpenBooking }) {
           ))}
         </nav>
 
-        {/* Right: Actions (Properly Spaced & Never Cut Off) */}
-        <div className="flex items-center gap-3 shrink-0">
+        {/* Right: Sleek & Compact Actions (Never Overflowing) */}
+        <div className="shrink-0 pl-4 lg:pl-8 flex items-center gap-2.5">
           <a
             href={siteData.brand.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] px-4 py-2 rounded-full border border-stone-300 hover:border-stone-900 text-stone-700 hover:text-stone-900 transition-colors whitespace-nowrap focus:outline-none"
+            title="Chat on WhatsApp"
+            className="w-8 h-8 rounded-full border border-stone-300 hover:border-emerald-600 text-stone-700 hover:text-emerald-700 flex items-center justify-center transition-colors focus:outline-none"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-            <span>WhatsApp</span>
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
           </a>
           
           <button
             onClick={() => onOpenBooking("Header Book Experience")}
-            className="hidden sm:inline-block text-xs uppercase tracking-[0.18em] px-4 py-2 bg-[#1C1A18] hover:bg-[#A38257] text-white transition-colors whitespace-nowrap focus:outline-none shadow-xs"
+            className="text-[11px] uppercase tracking-[0.14em] px-3.5 py-1.5 sm:px-4 sm:py-2 bg-stone-900 hover:bg-[#A38257] text-white transition-colors whitespace-nowrap focus:outline-none"
           >
             Book
           </button>
 
-          {/* Mobile Menu Button (Shows on < xl) */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 text-stone-800 hover:text-[#A38257] focus:outline-none flex items-center gap-1.5 border border-stone-200 rounded px-2.5 py-1.5 ml-2"
+            className="lg:hidden p-1.5 text-stone-800 hover:text-[#A38257] focus:outline-none flex items-center gap-1 border border-stone-200 rounded px-2"
             aria-label="Toggle navigation menu"
           >
             <span className="text-[10px] uppercase tracking-widest font-medium">Menu</span>
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {mobileMenuOpen ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
           </button>
         </div>
 
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-b border-stone-200 px-6 py-5 shadow-lg animate-fadeIn">
-          <div className="flex flex-col space-y-3">
+        <div className="lg:hidden bg-white border-b border-stone-200 px-6 py-4 shadow-lg animate-fadeIn">
+          <div className="flex flex-col space-y-2.5">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.href}
                 className={({ isActive }) =>
-                  `text-xs uppercase tracking-[0.18em] py-2 border-b border-stone-100 flex items-center justify-between ${
+                  `text-xs uppercase tracking-[0.16em] py-1.5 border-b border-stone-100 flex items-center justify-between ${
                     isActive ? 'text-[#A38257] font-semibold pl-2' : 'text-stone-700 hover:text-stone-900'
                   }`
                 }
               >
                 <span>{link.name}</span>
-                <span className="text-stone-300 text-sm">&rarr;</span>
+                <span className="text-stone-300 text-xs">&rarr;</span>
               </NavLink>
             ))}
-            <div className="pt-3 flex flex-col gap-2.5">
+            <div className="pt-2 flex items-center gap-2">
               <a
                 href={siteData.brand.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.18em] py-2.5 rounded border border-stone-300 text-stone-800"
+                className="flex-1 flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-[0.14em] py-2 rounded border border-stone-300 text-stone-800"
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp: {siteData.brand.phoneDisplay}</span>
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <span>WhatsApp</span>
               </a>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenBooking("Mobile Booking");
                 }}
-                className="w-full text-xs uppercase tracking-[0.18em] py-2.5 bg-[#1C1A18] text-white text-center font-medium"
+                className="flex-1 text-[11px] uppercase tracking-[0.14em] py-2 bg-stone-900 text-white text-center font-medium"
               >
-                Book an Experience
+                Book
               </button>
             </div>
           </div>
