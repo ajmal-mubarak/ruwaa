@@ -1,106 +1,165 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { siteData } from '../data/siteData';
-import { MessageCircle, ArrowUp } from 'lucide-react';
-import { InstagramIcon } from './Icons';
 
-export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Collaborations", href: "/collaborations" },
-    { name: "Why Ruwaa", href: "/why-ruwaa" },
-    { name: "Contact", href: "/contact" },
-  ];
-
+export default function Footer({ onOpenBooking }) {
   return (
-    <footer className="bg-[#0B0B0A] text-[#E8DFD3] pt-16 pb-12 border-t border-stone-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <footer className="bg-black text-stone-300 pt-16 sm:pt-20 pb-12 border-t border-stone-900 font-sans">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
-        {/* Brand Center Header */}
-        <div className="text-center space-y-3 pb-10 border-b border-stone-800">
-          <div className="w-10 h-10 rounded-full border border-[#A38257] mx-auto flex items-center justify-center font-calligraphy text-2xl text-[#E2C798]">
-            R
-          </div>
-          <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.16em] text-white">
-            RUWAA ARTISTRY
-          </h2>
-          <p className="font-serif italic text-base sm:text-lg text-[#E2C798] font-light">
-            The Art of Calligraphy, Crafted with Elegance.
-          </p>
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.22em] text-stone-400 font-sans max-w-xl mx-auto leading-relaxed">
-            Bespoke Arabic &amp; English Calligraphy | Luxury Engraving | Live Artistry | Personalized Keepsakes
-          </p>
-        </div>
-
-        {/* Navigation & Socials: Shown line-by-line as requested */}
-        <div className="py-12 flex flex-col items-center justify-center gap-8 border-b border-stone-800">
+        {/* Main Grid: Left Brand Narrative + Right 4 Columns (Directly matching reference) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-stone-800/80">
           
-          {/* Vertical Line-by-Line Nav Links */}
-          <nav 
-            aria-label="Footer Navigation" 
-            className="flex flex-col items-center space-y-4 text-xs uppercase tracking-[0.26em] text-stone-400 font-medium"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="hover:text-[#E2C798] transition-colors py-0.5 tracking-[0.26em]"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+          {/* Left Column: Brand Name & Atelier Manifesto */}
+          <div className="lg:col-span-5 space-y-4 text-left">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-[0.08em] text-white uppercase">
+              RUWAA ARTISTRY
+            </h2>
+            <p className="text-stone-400 font-light text-xs sm:text-sm leading-relaxed max-w-sm">
+              Ruwaa Artistry is a luxury calligraphy &amp; engraving atelier by Farisha Arif, working across bespoke commissions, luxury perfume flacons, and live artistic activations from Qatar through to Saudi Arabia.
+            </p>
+          </div>
 
-          {/* Social and back to top icons */}
-          <div className="flex items-center gap-4 pt-6 border-t border-stone-800/80 w-full max-w-xs justify-center">
-            <a
-              href={siteData.brand.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="w-9 h-9 rounded-full border border-stone-700 hover:border-[#E2C798] text-stone-300 hover:text-[#E2C798] flex items-center justify-center transition-colors bg-stone-900/60"
-            >
-              <InstagramIcon className="w-4 h-4" />
-            </a>
+          {/* Right Columns: Studio • Work • Resources • Social */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-8 text-left">
+            
+            {/* Column 1: Studio */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+                Studio
+              </h3>
+              <ul className="space-y-2 text-xs text-stone-400 font-light">
+                <li>
+                  <Link to="/about" className="hover:text-white transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="hover:text-white transition-colors">
+                    Farisha Arif
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/why-ruwaa" className="hover:text-white transition-colors">
+                    Why Ruwaa
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-white transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-            <a
-              href={siteData.brand.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="w-9 h-9 rounded-full border border-stone-700 hover:border-emerald-500 text-stone-300 hover:text-emerald-400 flex items-center justify-center transition-colors bg-stone-900/60"
-            >
-              <MessageCircle className="w-4 h-4" />
-            </a>
+            {/* Column 2: Work */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+                Work
+              </h3>
+              <ul className="space-y-2 text-xs text-stone-400 font-light">
+                <li>
+                  <Link to="/services" className="hover:text-white transition-colors">
+                    Glass Engraving
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-white transition-colors">
+                    Calligraphy
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-white transition-colors">
+                    Ceramics &amp; Clay
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collaborations" className="hover:text-white transition-colors">
+                    Live Activations
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-            <button
-              onClick={scrollToTop}
-              aria-label="Back to top"
-              className="w-9 h-9 rounded-full border border-stone-700 hover:border-white text-stone-300 hover:text-white flex items-center justify-center transition-colors bg-stone-900/60"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
+            {/* Column 3: Resources */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+                Resources
+              </h3>
+              <ul className="space-y-2 text-xs text-stone-400 font-light">
+                <li>
+                  <Link to="/portfolio" className="hover:text-white transition-colors">
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collaborations" className="hover:text-white transition-colors">
+                    Brand Collaborations
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/why-ruwaa" className="hover:text-white transition-colors">
+                    Craft Pillars
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-white transition-colors">
+                    Studio Inquiries
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 4: Social */}
+            <div className="space-y-3">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+                Social
+              </h3>
+              <ul className="space-y-2 text-xs text-stone-400 font-light">
+                <li>
+                  <a
+                    href={siteData.brand.instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={siteData.brand.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <span className="text-stone-500 cursor-default">
+                    Qatar (Doha)
+                  </span>
+                </li>
+                <li>
+                  <span className="text-stone-500 cursor-default">
+                    Saudi (Riyadh)
+                  </span>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
         </div>
 
-        {/* Bottom Credits */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-sans tracking-wider gap-3 text-center sm:text-left">
+        {/* Bottom Credits Line */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 font-light gap-4 text-center sm:text-left">
           <p>
-            Instagram: <a href={siteData.brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-stone-300 hover:text-[#E2C798] transition-colors">{siteData.brand.instagram}</a>
+            &copy; {new Date().getFullYear()} Ruwaa Artistry Studio. All rights reserved.
           </p>
-          <p>
-            &copy; {new Date().getFullYear()} Ruwaa Artistry. All Rights Reserved.
-          </p>
-          <p className="text-stone-400">
-            Qatar &bull; Saudi Arabia
+          <p className="text-stone-500">
+            Farisha Arif Atelier &bull; Doha &bull; Riyadh
           </p>
         </div>
 

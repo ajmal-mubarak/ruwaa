@@ -22,8 +22,12 @@ export default function HaloCarousel({ onOpenBooking }) {
   // Step angle for desktop half-circle arc: 20 degrees produces a tight, low gap hugging the circular line
   const stepAngle = 20;
 
-  // Desktop Auto-rotation effect
+  // Desktop ONLY Auto-rotation effect (Screen width >= 768px)
   useEffect(() => {
+    // Check if on mobile: if window width < 768, DO NOT auto-rotate or auto-scroll!
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) return; // Strict: NEVER auto-scroll on mobile
+
     if (!isAutoPlaying || isDragging) return;
 
     let animationFrame;
@@ -32,7 +36,7 @@ export default function HaloCarousel({ onOpenBooking }) {
       const delta = (now - lastTimeRef.current) / 1000;
       lastTimeRef.current = now;
 
-      // Slow elegant turn: ~3 degrees per second
+      // Slow elegant turn on desktop: ~3.2 degrees per second
       setAngle((prev) => prev + delta * 3.2);
       animationFrame = requestAnimationFrame(animate);
     };
@@ -43,8 +47,11 @@ export default function HaloCarousel({ onOpenBooking }) {
     return () => cancelAnimationFrame(animationFrame);
   }, [isAutoPlaying, isDragging]);
 
-  // Sync selectedIdx based on closest card to 0deg (top of the arch) on desktop
+  // Sync selectedIdx based on desktop angle ONLY on desktop screens
   useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    if (isMobile) return; // Do not overwrite mobile selection from desktop rotation!
+
     const rawIdx = Math.round(-angle / stepAngle);
     const normalized = ((rawIdx % total) + total) % total;
     setSelectedIdx(normalized);
@@ -52,6 +59,7 @@ export default function HaloCarousel({ onOpenBooking }) {
 
   // Desktop Drag handlers
   const handlePointerDown = (e) => {
+    if (window.innerWidth < 768) return; // Ignore on mobile
     setIsDragging(true);
     const clientX = e.clientX || 0;
     setDragStartX(clientX);
@@ -59,7 +67,7 @@ export default function HaloCarousel({ onOpenBooking }) {
   };
 
   const handlePointerMove = (e) => {
-    if (!isDragging) return;
+    if (!isDragging || window.innerWidth < 768) return;
     const clientX = e.clientX || 0;
     const deltaX = clientX - dragStartX;
     const sensitivity = 0.14;
@@ -73,8 +81,11 @@ export default function HaloCarousel({ onOpenBooking }) {
     setAngle(-targetIdx * stepAngle);
   };
 
+  // Click card to center
   const snapToCard = (index) => {
     setSelectedIdx(index);
+
+    // Update desktop angle
     const currentVirtualIdx = -angle / stepAngle;
     const currentBase = Math.round(currentVirtualIdx);
     const currentMod = ((currentBase % total) + total) % total;
@@ -86,12 +97,11 @@ export default function HaloCarousel({ onOpenBooking }) {
     const targetVirtual = currentBase + diff;
     setAngle(-targetVirtual * stepAngle);
 
-    // If mobile scroll container exists, scroll card into view
+    // Update mobile scroll container position cleanly
     if (mobileScrollRef.current) {
-      const child = mobileScrollRef.current.children[index];
-      if (child) {
-        child.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
+      const container = mobileScrollRef.current;
+      const cardWidth = 160 + 12; // 160px width + 12px gap
+      container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
     }
   };
 
@@ -105,11 +115,11 @@ export default function HaloCarousel({ onOpenBooking }) {
     snapToCard(prevIdx);
   };
 
-  // Mobile scroll listener to update selected card
+  // Mobile User Manual Scroll Listener (Updates selectedIdx ONLY when user manually scrolls)
   const handleMobileScroll = (e) => {
     const container = e.target;
     const scrollLeft = container.scrollLeft;
-    const cardWidth = 170 + 12; // width + gap
+    const cardWidth = 160 + 12; // width + gap
     const index = Math.round(scrollLeft / cardWidth);
     if (index >= 0 && index < total && index !== selectedIdx) {
       setSelectedIdx(index);
@@ -153,10 +163,11 @@ export default function HaloCarousel({ onOpenBooking }) {
             <span>PORTFOLIO ARCHIVE</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Desktop Auto-Turn Toggle */}
             <button
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              aria-label={isAutoPlaying ? "Pause rotation" : "Play rotation"}
+              aria-label={isAutoPlaying ? "Pause rotation" : "Enable rotation"}
               className="hidden md:flex px-3 py-1.5 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-stone-800 text-[10px] uppercase tracking-wider text-stone-300 items-center gap-1.5 transition-colors"
             >
               {isAutoPlaying ? (
@@ -174,7 +185,7 @@ export default function HaloCarousel({ onOpenBooking }) {
 
             <Link
               to="/portfolio"
-              className="text-xs uppercase tracking-[0.18em] text-[#E2C798] hover:text-white font-medium flex items-center gap-1.5 transition-colors pl-2"
+              className="text-xs uppercase tracking-[0.18em] text-[#E2C798] hover:text-white font-medium flex items-center gap-1 transition-colors pl-1 sm:pl-2"
             >
               <span>Explore All</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -195,19 +206,14 @@ export default function HaloCarousel({ onOpenBooking }) {
               while (diff > total / 2) diff -= total;
               while (diff < -total / 2) diff += total;
 
-              const cardAngle = diff * stepAngle; // angle in degrees
+              const cardAngle = diff * stepAngle;
 
-              // Hide cards outside visible horizon
               if (Math.abs(cardAngle) > 75) return null;
 
-              // Pure circular arc formula (half-circle line):
-              // R = radius of the circle
-              // x = R * sin(theta)
-              // y = R * (1 - cos(theta))  --> curves down along true circle
               const rad = (cardAngle * Math.PI) / 180;
-              const R = 460; // circular radius
+              const R = 460;
               const x = Math.sin(rad) * R;
-              const y = (1 - Math.cos(rad)) * (R * 0.42); // gentle half-circle drop
+              const y = (1 - Math.cos(rad)) * (R * 0.42);
 
               const distRatio = Math.abs(cardAngle) / 70;
               const scale = Math.max(0.74, 1 - 0.26 * Math.pow(distRatio, 1.3));
@@ -257,7 +263,7 @@ export default function HaloCarousel({ onOpenBooking }) {
             })}
           </div>
 
-          {/* Center Editorial Text Beneath the Overhead Arc (Unobstructed & Clean) */}
+          {/* Center Editorial Text Beneath the Overhead Arc */}
           <div className="absolute top-[210px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
             <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#A38257] font-semibold font-sans mb-1 drop-shadow-sm">
               ARCHIVE 08 &bull; OUR PORTFOLIO
@@ -290,11 +296,11 @@ export default function HaloCarousel({ onOpenBooking }) {
         </div>
 
         {/* ======================================================== */}
-        {/* MOBILE VIEW (< md): STRAIGHT LINE HORIZONTAL SCROLL WITH LOW GAP */}
+        {/* MOBILE VIEW (< md): 100% MANUAL STRAIGHT-LINE SCROLL (NO AUTO SCROLL) */}
         {/* ======================================================== */}
         <div className="md:hidden flex flex-col justify-center my-auto py-2">
           
-          {/* Straight Horizontal Swipe Track with Low Gap (12px) */}
+          {/* Straight Horizontal Swipe Track with Low Gap (12px) - Manual Scroll ONLY */}
           <div 
             ref={mobileScrollRef}
             onScroll={handleMobileScroll}
@@ -307,10 +313,10 @@ export default function HaloCarousel({ onOpenBooking }) {
                 <div
                   key={item.id}
                   onClick={() => snapToCard(idx)}
-                  className={`shrink-0 w-[160px] sm:w-[180px] aspect-square rounded-2xl overflow-hidden snap-center cursor-pointer transition-all duration-300 relative ${
+                  className={`shrink-0 w-[160px] aspect-square rounded-2xl overflow-hidden snap-center cursor-pointer transition-all duration-300 relative ${
                     isSelected 
-                      ? 'ring-2 ring-[#A38257] scale-[1.02] shadow-[0_10px_30px_rgba(0,0,0,0.8)]' 
-                      : 'opacity-70 border border-stone-800'
+                      ? 'ring-2 ring-[#A38257] scale-[1.03] shadow-[0_12px_32px_rgba(0,0,0,0.85)] opacity-100' 
+                      : 'opacity-65 border border-stone-800'
                   }`}
                 >
                   <img
@@ -362,7 +368,7 @@ export default function HaloCarousel({ onOpenBooking }) {
 
         </div>
 
-        {/* Bottom Navigation & Drag Controls */}
+        {/* Bottom Navigation & Controls */}
         <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between shrink-0 pb-1">
           
           {/* Slide counter */}
