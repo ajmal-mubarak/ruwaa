@@ -80,26 +80,38 @@ export default function Hero({ onOpenBooking }) {
       >
         <div className="w-2 h-2 rounded-full bg-stone-700" />
 
-        <div className="flex flex-col items-center gap-12 text-[10px] uppercase tracking-[0.25em] text-stone-400 font-medium">
-          <a
-            href={siteData.brand.instagramUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-white transition-colors transform -rotate-90 whitespace-nowrap"
-          >
-            Instagram
-          </a>
-          <a
-            href={siteData.brand.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-emerald-400 transition-colors transform -rotate-90 whitespace-nowrap"
-          >
-            WhatsApp
-          </a>
-          <span className="text-stone-600 transform -rotate-90 whitespace-nowrap cursor-default">
-            Qatar &bull; KSA
-          </span>
+        <div className="flex flex-col items-center gap-4 text-[10px] uppercase tracking-[0.25em] text-stone-400 font-medium">
+          <div className="h-20 flex items-center justify-center">
+            <a
+              href={siteData.brand.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors transform -rotate-90 whitespace-nowrap"
+            >
+              Instagram
+            </a>
+          </div>
+
+          <div className="w-4 h-[1px] bg-stone-800" />
+
+          <div className="h-20 flex items-center justify-center">
+            <a
+              href={siteData.brand.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-emerald-400 transition-colors transform -rotate-90 whitespace-nowrap"
+            >
+              WhatsApp
+            </a>
+          </div>
+
+          <div className="w-4 h-[1px] bg-stone-800" />
+
+          <div className="h-28 flex items-center justify-center">
+            <span className="text-stone-500 transform -rotate-90 whitespace-nowrap cursor-default">
+              Qatar &bull; KSA
+            </span>
+          </div>
         </div>
 
         <div className="w-2 h-2 rounded-full bg-stone-700" />
