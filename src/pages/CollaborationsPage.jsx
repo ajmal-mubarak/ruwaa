@@ -3,7 +3,7 @@ import { siteData } from '../data/siteData';
 import { Sparkles, MessageCircle, CheckCircle2 } from 'lucide-react';
 
 export default function CollaborationsPage({ onOpenBooking }) {
-  const { exhibitions } = siteData;
+  const exhibitionsList = siteData.exhibitionsList || [];
 
   return (
     <div className="bg-[#0E0E0D] text-white min-h-screen">
@@ -90,7 +90,7 @@ export default function CollaborationsPage({ onOpenBooking }) {
           </div>
 
           <div className="space-y-4">
-            {exhibitions.map((item, idx) => (
+            {exhibitionsList.map((item, idx) => (
               <div
                 key={idx}
                 className="bg-[#171715] border border-stone-800 p-5 flex items-start gap-4 rounded-xl hover:border-stone-700 transition-colors"

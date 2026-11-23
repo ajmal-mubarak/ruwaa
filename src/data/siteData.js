@@ -326,6 +326,25 @@ export const siteData = {
     description: "Our creative journey extends beyond conventional calligraphy through unique artistic collaborations, custom ceramics, and contemporary decorative artwork. Our selected works include abstract Arabic calligraphy compositions and bespoke decorative pieces created for upscale interiors. We are passionate about exploring new artistic possibilities while preserving the beauty and identity of traditional calligraphy."
   },
 
+  exhibitionsList: [
+    {
+      title: "Qatar Museums Cultural Showcase & Auction",
+      desc: "Participation in distinguished cultural activities and artistic showcases, featuring bespoke contemporary Arabic calligraphy sold at live auction."
+    },
+    {
+      title: "Qatar Masters – Doha Golf Club VIP Pavilion",
+      desc: "Live Arabic and English calligraphy activations for international tour champions, dignitaries, and VIP club patrons."
+    },
+    {
+      title: "Annabi Cultural Heritage Showcase at Blue Saloon",
+      desc: "Specialized calligraphic tribute celebrating Qatari national pride, traditional literature, and heritage typography."
+    },
+    {
+      title: "Ramadan Heritage Activation – Doha Mall",
+      desc: "Interactive live calligraphy demonstrations, handcrafted verse keepsakes, and community art engagement during Ramadan."
+    }
+  ],
+
   eventServices: [
     { name: "Live Arabic Calligraphy", detail: "Traditional & modern scripts executed live before guests" },
     { name: "Live English Calligraphy", detail: "Copperplate, Modern Serif & expressive brush scripts" },
