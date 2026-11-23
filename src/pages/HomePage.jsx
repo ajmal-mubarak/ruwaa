@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Introduction from '../components/Introduction';
+import HaloCarousel from '../components/HaloCarousel';
 import { siteData } from '../data/siteData';
 import { ArrowRight } from 'lucide-react';
 
@@ -19,57 +20,8 @@ export default function HomePage({ onOpenBooking }) {
       {/* 2. Introduction Section (Elegance In Every Letter) */}
       <Introduction />
 
-      {/* 3. Portfolio Showcase (Like Caligra's "Typeface Portfolio" Section) */}
-      <section className="py-16 sm:py-24 bg-white border-b border-stone-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans mb-1">
-                OUR PORTFOLIO
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-light">
-                A Collection of Artistry
-              </h2>
-            </div>
-            <Link
-              to="/portfolio"
-              className="text-xs uppercase tracking-[0.2em] font-medium text-stone-900 hover:text-[#A38257] flex items-center gap-1.5 transition-colors shrink-0"
-            >
-              <span>Explore All 8 Categories</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {marqueeWorks.map((item) => (
-              <Link
-                key={item.id}
-                to="/portfolio"
-                className="group block bg-stone-50 border border-stone-200 p-3 space-y-3 transition-all hover:shadow-md"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-stone-100">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover standard-image-hover"
-                  />
-                </div>
-                <div>
-                  <span className="text-[9px] uppercase tracking-[0.18em] text-[#A38257] font-semibold">
-                    {item.category}
-                  </span>
-                  <h3 className="font-serif text-base text-stone-900 font-medium mt-1 line-clamp-1">
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] text-stone-400 font-sans mt-0.5">{item.surface}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-        </div>
-      </section>
+      {/* 3. Halo Carousel Portfolio Showcase (Matching React Bits reference) */}
+      <HaloCarousel onOpenBooking={onOpenBooking} />
 
       {/* 4. Services Preview */}
       <section className="py-16 sm:py-24 bg-[#FAFAFA] border-b border-stone-200/80">
