@@ -29,15 +29,15 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-white text-ink-900 font-sans selection:bg-[#E2C798] selection:text-ink-900 relative">
+      <div className="min-h-screen flex flex-col bg-[#0E0E0D] text-stone-100 font-sans selection:bg-[#A38257] selection:text-white relative">
         
         {/* Subtle Arabic Calligraphy Watermark Background */}
         <div 
           aria-hidden="true"
-          className="fixed inset-0 pointer-events-none z-0 opacity-[0.035] mix-blend-multiply bg-repeat"
+          className="fixed inset-0 pointer-events-none z-0 opacity-[0.045] mix-blend-screen bg-repeat"
           style={{
             backgroundImage: `url('/arabic-pattern.jpg')`,
-            backgroundSize: '520px auto'
+            backgroundSize: '480px auto'
           }}
         />
 

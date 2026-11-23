@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, Pause, Play, Sparkles } from 'lucide-react';
 import { siteData } from '../data/siteData';
@@ -16,11 +16,10 @@ export default function HaloCarousel({ onOpenBooking }) {
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   const containerRef = useRef(null);
-  const autoPlayRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
 
-  // Step angle between adjacent cards
-  const stepAngle = 18; // 18 degrees per card
+  // Step angle between adjacent cards (wide enough so cards never collide or overlap)
+  const stepAngle = 27; // 27 degrees per card gives generous left/right space
 
   // Auto-rotation effect
   useEffect(() => {
@@ -33,7 +32,7 @@ export default function HaloCarousel({ onOpenBooking }) {
       lastTimeRef.current = now;
 
       // Slow elegant turn: ~3 degrees per second
-      setAngle((prev) => prev + delta * 3.5);
+      setAngle((prev) => prev + delta * 3.2);
       animationFrame = requestAnimationFrame(animate);
     };
 
@@ -45,7 +44,6 @@ export default function HaloCarousel({ onOpenBooking }) {
 
   // Sync selectedIdx based on closest card to 0deg (top of the arch)
   useEffect(() => {
-    // Current normalized index
     const rawIdx = Math.round(-angle / stepAngle);
     const normalized = ((rawIdx % total) + total) % total;
     setSelectedIdx(normalized);
@@ -64,7 +62,7 @@ export default function HaloCarousel({ onOpenBooking }) {
     const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
     const deltaX = clientX - dragStartX;
     // Map pixels to rotation degrees
-    const sensitivity = 0.16;
+    const sensitivity = 0.14;
     setAngle(dragStartAngle + deltaX * sensitivity);
   };
 
@@ -77,7 +75,6 @@ export default function HaloCarousel({ onOpenBooking }) {
   };
 
   const snapToCard = (index) => {
-    // Compute shortest angular distance
     const currentVirtualIdx = -angle / stepAngle;
     const currentBase = Math.round(currentVirtualIdx);
     const currentMod = ((currentBase % total) + total) % total;
@@ -105,7 +102,7 @@ export default function HaloCarousel({ onOpenBooking }) {
   return (
     <section 
       ref={containerRef}
-      className="relative bg-gradient-to-b from-stone-900 via-[#181817] to-stone-950 text-white py-16 sm:py-24 border-b border-stone-800 overflow-hidden select-none"
+      className="relative bg-gradient-to-b from-[#141413] via-[#0E0E0D] to-[#0A0A09] text-white h-[calc(100vh-4.5rem)] min-h-[580px] max-h-[760px] flex flex-col justify-between overflow-hidden select-none py-3 sm:py-5 border-b border-stone-800"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -115,10 +112,10 @@ export default function HaloCarousel({ onOpenBooking }) {
       onTouchEnd={handlePointerUp}
       style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
     >
-      {/* Subtle Arabic calligraphy watermark pattern in ambient background */}
+      {/* Arabic calligraphy watermark pattern in ambient background */}
       <div 
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-screen bg-repeat z-0"
+        className="pointer-events-none absolute inset-0 opacity-[0.045] mix-blend-screen bg-repeat z-0"
         style={{
           backgroundImage: `url('/arabic-pattern.jpg')`,
           backgroundSize: '480px auto'
@@ -128,14 +125,14 @@ export default function HaloCarousel({ onOpenBooking }) {
       {/* Radial overhead halo spotlight */}
       <div 
         aria-hidden="true" 
-        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#A38257]/15 via-transparent to-transparent blur-3xl rounded-full"
+        className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[380px] bg-gradient-to-b from-[#A38257]/15 via-transparent to-transparent blur-3xl rounded-full"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col justify-between h-full">
         
         {/* Top Badges & Controls Header Bar */}
-        <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-800/80 border border-stone-700/60 text-[10px] uppercase tracking-[0.2em] text-[#E2C798] font-medium backdrop-blur-xs">
+        <div className="flex items-center justify-between shrink-0 pt-1">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900/80 border border-stone-800 text-[10px] uppercase tracking-[0.2em] text-[#E2C798] font-medium backdrop-blur-xs">
             <Sparkles className="w-3 h-3 text-[#A38257]" />
             <span>PORTFOLIO ARCHIVE</span>
           </div>
@@ -144,7 +141,7 @@ export default function HaloCarousel({ onOpenBooking }) {
             <button
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
               aria-label={isAutoPlaying ? "Pause rotation" : "Play rotation"}
-              className="px-3 py-1.5 rounded-full bg-stone-800/80 hover:bg-stone-700 border border-stone-700/60 text-[10px] uppercase tracking-wider text-stone-300 flex items-center gap-1.5 transition-colors"
+              className="px-3 py-1.5 rounded-full bg-stone-900/80 hover:bg-stone-800 border border-stone-800 text-[10px] uppercase tracking-wider text-stone-300 flex items-center gap-1.5 transition-colors"
             >
               {isAutoPlaying ? (
                 <>
@@ -169,105 +166,99 @@ export default function HaloCarousel({ onOpenBooking }) {
           </div>
         </div>
 
-        {/* Halo Carousel Stage */}
-        <div className="relative w-full h-[400px] sm:h-[460px] md:h-[500px] flex items-center justify-center overflow-hidden">
+        {/* Halo Carousel Stage (Cards Arch Overhead with Generous Left/Right Space) */}
+        <div className="relative w-full flex-1 min-h-[360px] max-h-[460px] flex items-center justify-center overflow-hidden my-auto">
           
-          {/* Render Cards Along the Convex Arch */}
-          {items.map((item, i) => {
-            // Compute relative angle for this card
-            const virtualCurrent = -angle / stepAngle;
-            let diff = i - (virtualCurrent % total);
-            // Wrap difference around [-total/2, total/2]
-            while (diff > total / 2) diff -= total;
-            while (diff < -total / 2) diff += total;
+          {/* Overhead Cards Arc */}
+          <div className="absolute top-2 inset-x-0 h-[220px] flex items-center justify-center">
+            {items.map((item, i) => {
+              const virtualCurrent = -angle / stepAngle;
+              let diff = i - (virtualCurrent % total);
+              while (diff > total / 2) diff -= total;
+              while (diff < -total / 2) diff += total;
 
-            const cardAngle = diff * stepAngle; // angle in degrees
+              const cardAngle = diff * stepAngle; // angle in degrees
 
-            // Hide cards that are far away out of visible arc
-            if (Math.abs(cardAngle) > 75) return null;
+              // Hide cards outside visible horizon
+              if (Math.abs(cardAngle) > 75) return null;
 
-            // Geometry along the convex halo arc:
-            // x = Rx * sin(theta)
-            // y = Ry * (1 - cos(theta))  --> starts at 0 at top, dips down towards edges
-            const rad = (cardAngle * Math.PI) / 180;
-            const rx = 440; // horizontal spread
-            const ry = 190; // vertical curvature depth
-            const x = Math.sin(rad) * rx;
-            const y = (1 - Math.cos(rad)) * ry;
+              // Arc math: generous horizontal radius with ample spacing
+              const rad = (cardAngle * Math.PI) / 180;
+              const rx = 520; // wide horizontal spread
+              const ry = 140; // elegant arch curvature depth
+              const x = Math.sin(rad) * rx;
+              const y = (1 - Math.cos(rad)) * ry;
 
-            // Scale and opacity based on proximity to center
-            const distRatio = Math.abs(cardAngle) / 70;
-            const scale = Math.max(0.68, 1 - 0.32 * Math.pow(distRatio, 1.4));
-            const opacity = Math.max(0.15, 1 - 0.85 * Math.pow(distRatio, 2));
-            const zIndex = Math.round(100 - Math.abs(cardAngle));
-            const isCenter = Math.abs(cardAngle) < stepAngle / 2;
+              const distRatio = Math.abs(cardAngle) / 70;
+              const scale = Math.max(0.72, 1 - 0.28 * Math.pow(distRatio, 1.3));
+              const opacity = Math.max(0.1, 1 - 0.9 * Math.pow(distRatio, 1.8));
+              const zIndex = Math.round(100 - Math.abs(cardAngle));
+              const isCenter = Math.abs(cardAngle) < stepAngle / 2;
 
-            return (
-              <div
-                key={item.id}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  snapToCard(i);
-                }}
-                className={`absolute transition-shadow duration-300 rounded-[28px] overflow-hidden cursor-pointer ${
-                  isCenter ? 'ring-2 ring-[#A38257]/80 shadow-[0_20px_50px_rgba(0,0,0,0.8)]' : 'shadow-xl opacity-90 hover:opacity-100'
-                }`}
-                style={{
-                  width: 'clamp(170px, 22vw, 240px)',
-                  aspectRatio: '1 / 1',
-                  transform: `translate3d(${x}px, ${y}px, 0) rotate(${cardAngle}deg) scale(${scale})`,
-                  transformOrigin: '50% 120%',
-                  zIndex,
-                  opacity,
-                  transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s'
-                }}
-              >
-                {/* Card Artwork Image */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  draggable={false}
-                  className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 hover:scale-105"
-                />
-
-                {/* Subtle vignette border gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
-
-                {/* Card Tag overlay */}
-                <div className="absolute bottom-3 inset-x-3 text-left pointer-events-none">
-                  <span className="text-[9px] uppercase tracking-wider text-[#E2C798] font-semibold block line-clamp-1">
-                    {item.category}
-                  </span>
-                  <p className="font-serif text-xs text-white font-medium line-clamp-1 drop-shadow-sm">
-                    {item.title}
-                  </p>
+              return (
+                <div
+                  key={item.id}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    snapToCard(i);
+                  }}
+                  className={`absolute rounded-[24px] sm:rounded-[28px] overflow-hidden cursor-pointer transition-shadow duration-300 ${
+                    isCenter 
+                      ? 'ring-2 ring-[#A38257] shadow-[0_15px_45px_rgba(0,0,0,0.9)]' 
+                      : 'shadow-xl opacity-90 hover:opacity-100 hover:ring-1 hover:ring-stone-600'
+                  }`}
+                  style={{
+                    width: 'clamp(145px, 15vw, 190px)',
+                    aspectRatio: '1 / 1',
+                    transform: `translate3d(${x}px, ${y}px, 0) rotate(${cardAngle}deg) scale(${scale})`,
+                    transformOrigin: '50% 120%',
+                    zIndex,
+                    opacity,
+                    transition: isDragging ? 'none' : 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s'
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    draggable={false}
+                    className="w-full h-full object-cover select-none pointer-events-none transition-transform duration-500 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-2.5 inset-x-2.5 text-left pointer-events-none">
+                    <span className="text-[8.5px] uppercase tracking-wider text-[#E2C798] font-semibold block line-clamp-1">
+                      {item.category}
+                    </span>
+                    <p className="font-serif text-[11px] text-white font-medium line-clamp-1 drop-shadow-sm">
+                      {item.title}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
 
-          {/* Center Editorial Text Beneath the Overhead Arc (Directly matching reference image) */}
-          <div className="absolute top-[48%] sm:top-[50%] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
+          {/* Center Editorial Text Beneath the Overhead Arc (Unobstructed & Clean) */}
+          <div className="absolute top-[205px] sm:top-[215px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
             
             {/* Small uppercase label */}
-            <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#A38257] font-semibold font-sans mb-1.5 drop-shadow-sm">
+            <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#A38257] font-semibold font-sans mb-1 drop-shadow-sm">
               ARCHIVE 08 &bull; OUR PORTFOLIO
             </p>
 
             {/* Editorial Serif Title */}
-            <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl text-stone-100 font-light tracking-tight leading-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-100 font-light tracking-tight leading-snug">
               Built slowly, shown all at once
             </h2>
 
             {/* Subtitle / Instructions */}
-            <p className="text-stone-400 font-light text-xs sm:text-sm mt-2.5 max-w-md mx-auto leading-relaxed">
-              Signature bespoke calligraphy, fragrance engraving, and functional pottery across Qatar &amp; Saudi Arabia. Drag the arc, or let it turn on its own.
+            <p className="text-stone-400 font-light text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
+              Bespoke calligraphy, fragrance engraving, and functional pottery across Qatar &amp; Saudi Arabia. Drag the arc, or let it turn on its own.
             </p>
 
             {/* Active Card Quick Details Pill */}
-            <div className="mt-4 pointer-events-auto inline-flex items-center gap-2 bg-stone-900/90 border border-stone-700/80 rounded-full px-4 py-1.5 shadow-lg backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-[#A38257] shrink-0 animate-pulse" />
-              <span className="text-[11px] text-stone-300 font-serif line-clamp-1">
+            <div className="mt-3 pointer-events-auto inline-flex items-center gap-2 bg-stone-900/90 border border-stone-800 rounded-full px-4 py-1 shadow-lg backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#A38257] shrink-0 animate-pulse" />
+              <span className="text-[11px] text-stone-300 font-serif line-clamp-1 max-w-[220px] sm:max-w-[320px]">
                 {activeItem.title}
               </span>
               <span className="text-stone-600">&bull;</span>
@@ -283,8 +274,8 @@ export default function HaloCarousel({ onOpenBooking }) {
 
         </div>
 
-        {/* Bottom Navigation & Drag Controls */}
-        <div className="mt-6 sm:mt-10 pt-6 border-t border-stone-800/80 flex items-center justify-between">
+        {/* Bottom Navigation & Drag Controls (Always visible within screen height) */}
+        <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between shrink-0 pb-1">
           
           {/* Slide counter */}
           <div className="text-[11px] font-sans text-stone-500 uppercase tracking-widest">
@@ -298,9 +289,9 @@ export default function HaloCarousel({ onOpenBooking }) {
             <button
               onClick={handlePrev}
               aria-label="Previous artwork"
-              className="w-9 h-9 rounded-full border border-stone-700 hover:border-white bg-stone-900/80 hover:bg-white hover:text-stone-950 text-stone-300 flex items-center justify-center transition-all"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-stone-700 hover:border-white bg-stone-900/90 hover:bg-white hover:text-stone-950 text-stone-300 flex items-center justify-center transition-all"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
 
             {/* Quick Dots for each card */}
@@ -312,7 +303,7 @@ export default function HaloCarousel({ onOpenBooking }) {
                   aria-label={`Jump to piece ${idx + 1}`}
                   className={`transition-all duration-300 rounded-full ${
                     idx === selectedIdx
-                      ? 'w-6 h-1.5 bg-[#A38257]'
+                      ? 'w-5 sm:w-6 h-1.5 bg-[#A38257]'
                       : 'w-1.5 h-1.5 bg-stone-700 hover:bg-stone-500'
                   }`}
                 />
@@ -322,16 +313,16 @@ export default function HaloCarousel({ onOpenBooking }) {
             <button
               onClick={handleNext}
               aria-label="Next artwork"
-              className="w-9 h-9 rounded-full bg-[#A38257] hover:bg-[#b8976b] text-white flex items-center justify-center transition-all"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#A38257] hover:bg-[#b8976b] text-white flex items-center justify-center transition-all"
             >
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
           </div>
 
           {/* Book Experience CTA */}
           <button
             onClick={() => onOpenBooking(activeItem.title)}
-            className="hidden sm:inline-block text-[11px] uppercase tracking-[0.16em] px-4 py-2 bg-stone-800 hover:bg-[#A38257] text-stone-200 hover:text-white rounded-lg transition-colors border border-stone-700"
+            className="hidden sm:inline-block text-[11px] uppercase tracking-[0.16em] px-3.5 py-1.5 bg-stone-900 hover:bg-[#A38257] text-stone-200 hover:text-white rounded-lg transition-colors border border-stone-700"
           >
             Inquire This Piece
           </button>

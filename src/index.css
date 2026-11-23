@@ -4,8 +4,8 @@
 
 @layer base {
   body {
-    background-color: #FFFFFF;
-    color: #262220;
+    background-color: #0E0E0D;
+    color: #F5F5F4;
     font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
   }
@@ -36,10 +36,10 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFFFFF;
+  background: #0E0E0D;
 }
 ::-webkit-scrollbar-thumb {
-  background: #E2DCD5;
+  background: #262624;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -52,4 +52,19 @@
 }
 .standard-image-hover:hover {
   transform: scale(1.03);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
 }

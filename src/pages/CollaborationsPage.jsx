@@ -6,120 +6,123 @@ export default function CollaborationsPage({ onOpenBooking }) {
   const { exhibitions } = siteData;
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#0E0E0D] text-white min-h-screen">
       
       {/* Header */}
-      <section className="pt-14 sm:pt-20 pb-12 sm:pb-16 border-b border-stone-100 bg-[#FAFAFA]">
+      <section className="pt-14 sm:pt-20 pb-12 sm:pb-16 border-b border-stone-800 bg-[#121211]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans mb-1">
+          <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-400 font-sans mb-1">
             EXPERIENCES &amp; PARTNERSHIPS
           </p>
-          <span className="font-calligraphy text-5xl sm:text-7xl text-[#A38257] block mb-2">
+          <span className="font-calligraphy text-5xl sm:text-7xl text-[#E2C798] block mb-2">
             Collaborations &amp; Events
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl text-stone-900 font-light">
+          <h1 className="font-serif text-3xl sm:text-4xl text-stone-100 font-light">
             Creative Collaborations. Memorable Experiences.
           </h1>
-          <div className="w-12 h-[1px] bg-stone-300 mx-auto my-5" />
-          <p className="text-stone-600 font-light text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+          <div className="w-12 h-[1px] bg-[#A38257] mx-auto my-5" />
+          <p className="text-stone-300 font-light text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             We are proud to have collaborated with prestigious brands, organizations, and events, showcasing the beauty of live calligraphy and personalized artistic experiences.
           </p>
         </div>
       </section>
 
-      {/* Section 6: Selected Brand Collaborations */}
+      {/* Selected Brand Collaborations */}
       <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans mb-1">
+          <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-400 font-sans mb-1">
             SELECTED COLLABORATIONS
           </p>
-          <h2 className="font-serif text-3xl text-stone-900 font-light">
+          <h2 className="font-serif text-3xl text-white font-light">
             Prestigious Brand Activations
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {siteData.collaborations.map((collab, idx) => (
             <div
               key={idx}
-              className="bg-white border border-stone-200 p-6 space-y-3 flex flex-col justify-between hover:border-stone-400 transition-colors"
+              className="bg-[#161614] border border-stone-800 p-6 flex flex-col justify-between rounded-xl hover:border-[#A38257]/60 transition-all hover:shadow-2xl"
             >
               <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#A38257] font-semibold">
-                  {collab.badge}
-                </span>
-                <h3 className="font-serif text-2xl text-stone-900 mt-1 mb-2 font-medium">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#E2C798] font-semibold">
+                    {collab.badge}
+                  </span>
+                  <span className="text-xs text-stone-500 font-serif">0{idx + 1}</span>
+                </div>
+                <h3 className="font-serif text-2xl text-white mb-2">
                   {collab.brand}
                 </h3>
-                <p className="text-xs text-stone-600 font-light leading-relaxed">
+                <p className="text-xs text-stone-400 font-light leading-relaxed mb-4">
                   {collab.description}
                 </p>
               </div>
-              <div className="pt-3 border-t border-stone-100 text-[11px] text-stone-500 italic">
-                {collab.highlight}
+
+              <div className="pt-4 border-t border-stone-800 flex items-center justify-between">
+                <span className="text-[11px] text-[#A38257] uppercase tracking-wider flex items-center gap-1">
+                  <Sparkles className="w-3 h-3" />
+                  <span>Verified Activation</span>
+                </span>
+                <button
+                  onClick={() => onOpenBooking(`Brand Activation like ${collab.brand}`)}
+                  className="text-xs text-stone-400 hover:text-white uppercase tracking-wider transition-colors"
+                >
+                  Inquire &rarr;
+                </button>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Section 5: Live Artistry & Event Experiences */}
-      <section className="py-16 sm:py-20 bg-[#FAFAFA] border-t border-b border-stone-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans mb-1">
-              LIVE ARTISTRY &amp; EVENT EXPERIENCES
+      {/* Exhibitions & Cultural Programs */}
+      <section className="py-16 sm:py-20 bg-[#121211] border-t border-b border-stone-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-400 font-sans mb-1">
+              EXHIBITIONS &amp; CULTURAL EVENTS
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-light">
-              Making Every Occasion Unforgettable.
+            <h2 className="font-serif text-3xl text-white font-light">
+              Cultural &amp; Community Programs
             </h2>
-            <p className="text-xs sm:text-sm text-stone-600 font-light mt-3 leading-relaxed">
-              We bring the beauty of calligraphy directly to your events through live artistic experiences and personalized guest interactions. From elegant weddings and private celebrations to exclusive corporate gatherings, our live calligraphy services create unique moments that guests can take home and cherish.
-            </p>
+            <div className="w-12 h-[1px] bg-[#A38257] mx-auto my-4" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {siteData.eventServices.map((srv, idx) => (
-              <div key={idx} className="bg-white border border-stone-200 p-5 space-y-1">
-                <span className="text-[10px] uppercase tracking-wider text-[#A38257] font-semibold">0{idx + 1}</span>
-                <h4 className="font-serif text-lg text-stone-900 font-medium">{srv.name}</h4>
-                <p className="text-xs text-stone-500 font-light">{srv.detail}</p>
+          <div className="space-y-4">
+            {exhibitions.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-[#171715] border border-stone-800 p-5 flex items-start gap-4 rounded-xl hover:border-stone-700 transition-colors"
+              >
+                <div className="w-8 h-8 rounded-full bg-stone-900 border border-[#A38257]/40 flex items-center justify-center text-[#E2C798] shrink-0 font-serif text-sm">
+                  {idx + 1}
+                </div>
+                <div>
+                  <h4 className="font-serif text-lg text-white font-medium">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-stone-400 font-light leading-relaxed mt-1">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <button
-              onClick={() => onOpenBooking("Live Event Activation")}
-              className="px-8 py-3.5 bg-stone-900 hover:bg-[#A38257] text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors"
-            >
-              Book Live Calligraphy Experience
-            </button>
-          </div>
-
         </div>
       </section>
 
-      {/* Section 7: Custom Artwork & Exhibitions */}
-      <section className="py-16 sm:py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-        <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans mb-1">
-          {exhibitions.kicker}
-        </p>
-        <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-light mb-2">
-          {exhibitions.title}
-        </h2>
-        <p className="font-serif italic text-base text-[#A38257] mb-6">
-          {exhibitions.subtitle}
-        </p>
-        <p className="text-xs sm:text-sm text-stone-600 font-light max-w-2xl mx-auto leading-relaxed mb-8">
-          {exhibitions.description}
+      {/* Booking CTA */}
+      <section className="py-16 text-center max-w-2xl mx-auto px-4">
+        <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3">Host a Live Artistic Activation</h3>
+        <p className="text-xs sm:text-sm text-stone-400 font-light mb-6">
+          Bring the elegance of live Arabic and English calligraphy to your boutique, gala, or VIP private gathering.
         </p>
         <button
-          onClick={() => onOpenBooking("Custom Artwork Commission")}
-          className="px-8 py-3.5 border border-stone-800 hover:bg-stone-900 hover:text-white text-stone-900 text-xs uppercase tracking-[0.2em] transition-colors"
+          onClick={() => onOpenBooking("Brand Collaboration / Live Event")}
+          className="px-8 py-3.5 bg-[#A38257] hover:bg-[#b8976b] text-white text-xs uppercase tracking-[0.2em] font-medium transition-colors rounded-sm"
         >
-          Commission Custom Artwork
+          Book Live Activation
         </button>
       </section>
 
