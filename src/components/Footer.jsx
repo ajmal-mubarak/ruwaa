@@ -4,18 +4,18 @@ import { siteData } from '../data/siteData';
 
 export default function Footer({ onOpenBooking }) {
   return (
-    <footer className="bg-black text-stone-300 pt-16 sm:pt-20 pb-12 border-t border-stone-900 font-sans">
+    <footer className="bg-[#F4EFE6] text-stone-700 pt-16 sm:pt-20 pb-12 border-t border-[#EADDCB] font-sans">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
         {/* Main Grid: Left Brand Narrative + Right 4 Columns (Directly matching reference) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-stone-800/80">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-16 border-b border-[#EADDCB]">
           
           {/* Left Column: Brand Name & Atelier Manifesto */}
           <div className="lg:col-span-5 space-y-4 text-left">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-[0.08em] text-white uppercase">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-[0.08em] text-[#1C1917] uppercase">
               RUWAA ARTISTRY
             </h2>
-            <p className="text-stone-400 font-light text-xs sm:text-sm leading-relaxed max-w-sm">
+            <p className="text-[#57534E] font-light text-xs sm:text-sm leading-relaxed max-w-sm">
               Ruwaa Artistry is a luxury calligraphy &amp; engraving atelier by Farisha Arif, working across bespoke commissions, luxury perfume flacons, and live artistic activations from Qatar through to Saudi Arabia.
             </p>
           </div>
@@ -25,27 +25,27 @@ export default function Footer({ onOpenBooking }) {
             
             {/* Column 1: Studio */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-[#1C1917]">
                 Studio
               </h3>
-              <ul className="space-y-2 text-xs text-stone-400 font-light">
+              <ul className="space-y-2 text-xs text-stone-600 font-light">
                 <li>
-                  <Link to="/about" className="hover:text-white transition-colors">
+                  <Link to="/about" className="hover:text-[#9E672B] transition-colors">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link to="/about" className="hover:text-white transition-colors">
+                  <Link to="/about" className="hover:text-[#9E672B] transition-colors">
                     Farisha Arif
                   </Link>
                 </li>
                 <li>
-                  <Link to="/why-ruwaa" className="hover:text-white transition-colors">
+                  <Link to="/why-ruwaa" className="hover:text-[#9E672B] transition-colors">
                     Why Ruwaa
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="hover:text-white transition-colors">
+                  <Link to="/contact" className="hover:text-[#9E672B] transition-colors">
                     Contact
                   </Link>
                 </li>
@@ -54,27 +54,27 @@ export default function Footer({ onOpenBooking }) {
 
             {/* Column 2: Work */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-[#1C1917]">
                 Work
               </h3>
-              <ul className="space-y-2 text-xs text-stone-400 font-light">
+              <ul className="space-y-2 text-xs text-stone-600 font-light">
                 <li>
-                  <Link to="/services" className="hover:text-white transition-colors">
+                  <Link to="/services" className="hover:text-[#9E672B] transition-colors">
                     Glass Engraving
                   </Link>
                 </li>
                 <li>
-                  <Link to="/services" className="hover:text-white transition-colors">
+                  <Link to="/services" className="hover:text-[#9E672B] transition-colors">
                     Calligraphy
                   </Link>
                 </li>
                 <li>
-                  <Link to="/services" className="hover:text-white transition-colors">
+                  <Link to="/services" className="hover:text-[#9E672B] transition-colors">
                     Ceramics &amp; Clay
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collaborations" className="hover:text-white transition-colors">
+                  <Link to="/collaborations" className="hover:text-[#9E672B] transition-colors">
                     Live Activations
                   </Link>
                 </li>
@@ -83,27 +83,27 @@ export default function Footer({ onOpenBooking }) {
 
             {/* Column 3: Resources */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-[#1C1917]">
                 Resources
               </h3>
-              <ul className="space-y-2 text-xs text-stone-400 font-light">
+              <ul className="space-y-2 text-xs text-stone-600 font-light">
                 <li>
-                  <Link to="/portfolio" className="hover:text-white transition-colors">
+                  <Link to="/portfolio" className="hover:text-[#9E672B] transition-colors">
                     Portfolio
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collaborations" className="hover:text-white transition-colors">
+                  <Link to="/collaborations" className="hover:text-[#9E672B] transition-colors">
                     Brand Collaborations
                   </Link>
                 </li>
                 <li>
-                  <Link to="/why-ruwaa" className="hover:text-white transition-colors">
+                  <Link to="/why-ruwaa" className="hover:text-[#9E672B] transition-colors">
                     Craft Pillars
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="hover:text-white transition-colors">
+                  <Link to="/contact" className="hover:text-[#9E672B] transition-colors">
                     Studio Inquiries
                   </Link>
                 </li>
@@ -112,16 +112,16 @@ export default function Footer({ onOpenBooking }) {
 
             {/* Column 4: Social */}
             <div className="space-y-3">
-              <h3 className="text-xs uppercase tracking-wider font-semibold text-white">
+              <h3 className="text-xs uppercase tracking-wider font-semibold text-[#1C1917]">
                 Social
               </h3>
-              <ul className="space-y-2 text-xs text-stone-400 font-light">
+              <ul className="space-y-2 text-xs text-stone-600 font-light">
                 <li>
                   <a
                     href={siteData.brand.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-white transition-colors"
+                    className="hover:text-[#9E672B] transition-colors"
                   >
                     Instagram
                   </a>
@@ -131,7 +131,7 @@ export default function Footer({ onOpenBooking }) {
                     href={siteData.brand.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-emerald-400 transition-colors"
+                    className="hover:text-emerald-600 transition-colors"
                   >
                     WhatsApp
                   </a>

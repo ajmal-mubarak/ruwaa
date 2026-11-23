@@ -32,12 +32,12 @@ export default function App() {
       <ScrollToTop />
       {/* Interactive Calligraphy Letter Cursor Trail */}
       <CalligraphyCursorTrail />
-      <div className="min-h-screen flex flex-col bg-[#0E0E0D] text-stone-100 font-sans selection:bg-[#A38257] selection:text-white relative">
+      <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1C1917] font-sans selection:bg-[#C79F5E] selection:text-white relative">
         
         {/* Subtle Arabic Calligraphy Watermark Background */}
         <div 
           aria-hidden="true"
-          className="fixed inset-0 pointer-events-none z-0 opacity-[0.045] mix-blend-screen bg-repeat"
+          className="fixed inset-0 pointer-events-none z-0 opacity-[0.035] mix-blend-multiply bg-repeat"
           style={{
             backgroundImage: `url('/arabic-pattern.jpg')`,
             backgroundSize: '480px auto'

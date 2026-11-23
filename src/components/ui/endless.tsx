@@ -136,8 +136,8 @@ const css = `
   min-height: 540px;
   max-height: 750px;
   overflow: hidden;
-  background-color: #0E0E0D;
-  color: #ffffff;
+  background-color: #FAF7F2;
+  color: #1C1917;
   font-family: inherit;
   user-select: none;
   pointer-events: auto;
@@ -169,7 +169,7 @@ const css = `
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: #161614;
+  background-color: #FFFFFF;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
@@ -180,14 +180,14 @@ const css = `
   pointer-events: auto;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  border: 1px solid #EADDCB;
+  box-shadow: 0 16px 40px rgba(199, 159, 94, 0.2);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .endless-root .endless-plane:hover {
-  border-color: #A38257;
-  box-shadow: 0 20px 50px rgba(163, 130, 87, 0.45);
+  border-color: #C79F5E;
+  box-shadow: 0 20px 50px rgba(199, 159, 94, 0.4);
 }
 
 .endless-root .endless-plane img {
@@ -206,7 +206,7 @@ const css = `
   left: 50%;
   z-index: 50;
   transform: translate(-50%, -50%);
-  color: #ffffff;
+  color: #1C1917;
   font-family: inherit;
   font-size: 1.25rem;
   font-weight: 400;

@@ -34,8 +34,8 @@ export default function Navbar({ onOpenBooking }) {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#0E0E0D]/90 backdrop-blur-md shadow-md border-b border-stone-800/80' 
-          : 'bg-transparent border-b border-stone-800/30'
+          ? 'bg-[#FAF7F2]/95 backdrop-blur-md shadow-sm border-b border-[#EADDCB]' 
+          : 'bg-transparent border-b border-[#EADDCB]/40'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between">
@@ -43,14 +43,14 @@ export default function Navbar({ onOpenBooking }) {
         {/* Left: Brand Logo */}
         <div className="shrink-0 pr-4 lg:pr-8">
           <Link to="/" className="flex items-center gap-2.5 group focus:outline-none">
-            <div className="w-8 h-8 rounded-full border border-[#A38257] flex items-center justify-center font-calligraphy text-lg text-[#E2C798] group-hover:border-[#E2C798] transition-colors shrink-0">
+            <div className="w-8 h-8 rounded-full border border-[#C79F5E] flex items-center justify-center font-calligraphy text-lg text-[#9E672B] group-hover:border-[#9E672B] transition-colors shrink-0 bg-white">
               R
             </div>
             <div className="flex flex-col">
-              <span className="font-serif text-base sm:text-lg tracking-[0.14em] font-medium text-white group-hover:text-[#E2C798] transition-colors whitespace-nowrap">
+              <span className="font-serif text-base sm:text-lg tracking-[0.14em] font-medium text-[#1C1917] group-hover:text-[#9E672B] transition-colors whitespace-nowrap">
                 Ruwaa Artistry
               </span>
-              <span className="text-[7.5px] uppercase tracking-[0.2em] text-stone-400 font-sans -mt-0.5 whitespace-nowrap">
+              <span className="text-[7.5px] uppercase tracking-[0.2em] text-[#8C8277] font-sans -mt-0.5 whitespace-nowrap">
                 Qatar &amp; Saudi Arabia
               </span>
             </div>
@@ -66,8 +66,8 @@ export default function Navbar({ onOpenBooking }) {
               className={({ isActive }) =>
                 `text-[11px] uppercase tracking-[0.14em] font-sans whitespace-nowrap transition-colors relative py-1 focus:outline-none ${
                   isActive
-                    ? 'text-white font-semibold after:w-full after:bg-[#A38257]'
-                    : 'text-stone-300 hover:text-white after:w-0 hover:after:w-full after:bg-stone-500'
+                    ? 'text-[#1C1917] font-semibold after:w-full after:bg-[#C79F5E]'
+                    : 'text-stone-600 hover:text-[#9E672B] after:w-0 hover:after:w-full after:bg-[#C79F5E]'
                 } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:transition-all after:duration-300`
               }
             >
@@ -83,14 +83,14 @@ export default function Navbar({ onOpenBooking }) {
             target="_blank"
             rel="noopener noreferrer"
             title="Chat on WhatsApp"
-            className="w-8 h-8 rounded-full border border-stone-700 hover:border-emerald-500 text-stone-300 hover:text-emerald-400 flex items-center justify-center transition-colors focus:outline-none"
+            className="w-8 h-8 rounded-full border border-[#EADDCB] hover:border-emerald-500 text-stone-600 hover:text-emerald-600 flex items-center justify-center transition-colors focus:outline-none bg-white"
           >
-            <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+            <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
           </a>
           
           <button
             onClick={() => onOpenBooking("Header Book Experience")}
-            className="text-[11px] uppercase tracking-[0.14em] px-3.5 py-1.5 sm:px-4 sm:py-2 bg-[#A38257] hover:bg-[#b8976b] text-white transition-colors whitespace-nowrap focus:outline-none rounded-sm font-medium"
+            className="text-[11px] uppercase tracking-[0.14em] px-3.5 py-1.5 sm:px-4 sm:py-2 bg-[#C79F5E] hover:bg-[#9E672B] text-white transition-colors whitespace-nowrap focus:outline-none rounded-sm font-medium shadow-sm"
           >
             Book
           </button>
@@ -98,7 +98,7 @@ export default function Navbar({ onOpenBooking }) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 text-stone-300 hover:text-[#A38257] focus:outline-none flex items-center gap-1 border border-stone-700 rounded px-2"
+            className="lg:hidden p-1.5 text-stone-700 hover:text-[#9E672B] focus:outline-none flex items-center gap-1 border border-[#EADDCB] rounded px-2 bg-white"
             aria-label="Toggle navigation menu"
           >
             <span className="text-[10px] uppercase tracking-widest font-medium">Menu</span>
@@ -110,20 +110,20 @@ export default function Navbar({ onOpenBooking }) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#141413] border-b border-stone-800 px-6 py-4 shadow-2xl animate-fadeIn">
+        <div className="lg:hidden bg-[#FAF7F2] border-b border-[#EADDCB] px-6 py-4 shadow-xl animate-fadeIn">
           <div className="flex flex-col space-y-2.5">
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.href}
                 className={({ isActive }) =>
-                  `text-xs uppercase tracking-[0.16em] py-2 border-b border-stone-800 flex items-center justify-between ${
-                    isActive ? 'text-[#E2C798] font-semibold pl-2' : 'text-stone-300 hover:text-white'
+                  `text-xs uppercase tracking-[0.16em] py-2 border-b border-[#EADDCB] flex items-center justify-between ${
+                    isActive ? 'text-[#9E672B] font-semibold pl-2' : 'text-stone-700 hover:text-[#1C1917]'
                   }`
                 }
               >
                 <span>{link.name}</span>
-                <span className="text-stone-500 text-xs">&rarr;</span>
+                <span className="text-stone-400 text-xs">&rarr;</span>
               </NavLink>
             ))}
             <div className="pt-2 flex items-center gap-2">
@@ -131,9 +131,9 @@ export default function Navbar({ onOpenBooking }) {
                 href={siteData.brand.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-[0.14em] py-2 rounded border border-stone-700 text-stone-200"
+                className="flex-1 flex items-center justify-center gap-1.5 text-[11px] uppercase tracking-[0.14em] py-2 rounded border border-[#EADDCB] text-stone-700 bg-white"
               >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
                 <span>WhatsApp</span>
               </a>
               <button
@@ -141,7 +141,7 @@ export default function Navbar({ onOpenBooking }) {
                   setMobileMenuOpen(false);
                   onOpenBooking("Mobile Booking");
                 }}
-                className="flex-1 text-[11px] uppercase tracking-[0.14em] py-2 bg-[#A38257] text-white text-center font-medium rounded"
+                className="flex-1 text-[11px] uppercase tracking-[0.14em] py-2 bg-[#C79F5E] hover:bg-[#9E672B] text-white text-center font-medium rounded shadow-sm"
               >
                 Book
               </button>

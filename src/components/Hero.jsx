@@ -71,59 +71,59 @@ export default function Hero({ onOpenBooking }) {
   };
 
   return (
-    <section className="relative bg-transparent border-b border-stone-800/80 overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-white">
+    <section className="relative bg-transparent border-b border-[#EADDCB] overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-[#1C1917]">
       
       {/* 1. Left Vertical Rail */}
       <aside 
         aria-label="Social and location links" 
-        className="hidden md:flex flex-col justify-between items-center w-14 lg:w-16 py-8 border-r border-stone-800/80 bg-[#121211]/50 backdrop-blur-xs shrink-0 z-20"
+        className="hidden md:flex flex-col justify-between items-center w-14 lg:w-16 py-8 border-r border-[#EADDCB] bg-[#F4EFE6]/70 backdrop-blur-xs shrink-0 z-20"
       >
-        <div className="w-2 h-2 rounded-full bg-stone-700" />
+        <div className="w-2 h-2 rounded-full bg-[#C79F5E]" />
 
-        <div className="flex flex-col items-center gap-4 text-[10px] uppercase tracking-[0.25em] text-stone-400 font-medium">
+        <div className="flex flex-col items-center gap-4 text-[10px] uppercase tracking-[0.25em] text-stone-600 font-medium">
           <div className="h-20 flex items-center justify-center">
             <a
               href={siteData.brand.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors transform -rotate-90 whitespace-nowrap"
+              className="hover:text-[#9E672B] transition-colors transform -rotate-90 whitespace-nowrap"
             >
               Instagram
             </a>
           </div>
 
-          <div className="w-4 h-[1px] bg-stone-800" />
+          <div className="w-4 h-[1px] bg-[#EADDCB]" />
 
           <div className="h-20 flex items-center justify-center">
             <a
               href={siteData.brand.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-emerald-400 transition-colors transform -rotate-90 whitespace-nowrap"
+              className="hover:text-emerald-600 transition-colors transform -rotate-90 whitespace-nowrap"
             >
               WhatsApp
             </a>
           </div>
 
-          <div className="w-4 h-[1px] bg-stone-800" />
+          <div className="w-4 h-[1px] bg-[#EADDCB]" />
 
           <div className="h-28 flex items-center justify-center">
-            <span className="text-stone-500 transform -rotate-90 whitespace-nowrap cursor-default">
+            <span className="text-[#8C8277] transform -rotate-90 whitespace-nowrap cursor-default">
               Qatar &bull; KSA
             </span>
           </div>
         </div>
 
-        <div className="w-2 h-2 rounded-full bg-stone-700" />
+        <div className="w-2 h-2 rounded-full bg-[#C79F5E]" />
       </aside>
 
-      {/* 2. Main Stage (Calibrated to fit viewport height with luxury dark atmosphere) */}
+      {/* 2. Main Stage (Calibrated to fit viewport height with luxury light atmosphere) */}
       <div className="flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-4 sm:py-6 lg:py-6 relative z-10 overflow-hidden">
         
         {/* Subtle Arabic calligraphy watermark in ambient background */}
         <div 
           aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 opacity-[0.04] mix-blend-screen bg-repeat z-0"
+          className="pointer-events-none select-none absolute inset-0 opacity-[0.035] mix-blend-multiply bg-repeat z-0"
           style={{
             backgroundImage: `url('/arabic-pattern.jpg')`,
             backgroundSize: '480px auto'
@@ -137,25 +137,25 @@ export default function Hero({ onOpenBooking }) {
           <div className="lg:col-span-5 space-y-3 sm:space-y-4 text-left">
             
             {/* Slide Large Faded Number */}
-            <span className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-700 font-light block -mb-1">
+            <span className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#C79F5E]/40 font-light block -mb-1">
               {slide.number}
             </span>
 
             {/* Huge Bold Title with Accent Dot */}
             <div className="flex items-baseline gap-2">
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-white font-medium tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#1C1917] font-medium tracking-tight">
                 {slide.title}
               </h1>
               <span className={`w-3 h-3 rounded-full ${slide.dotColor} shrink-0 animate-pulse`} />
             </div>
 
             {/* Subtitle */}
-            <p className="font-serif italic text-sm sm:text-base text-[#E2C798] font-normal">
+            <p className="font-serif italic text-sm sm:text-base text-[#9E672B] font-normal">
               {slide.subtitle}
             </p>
             
             {/* Description */}
-            <p className="text-stone-400 font-light text-xs sm:text-sm leading-relaxed max-w-md">
+            <p className="text-[#57534E] font-light text-xs sm:text-sm leading-relaxed max-w-md">
               {slide.description}
             </p>
 
@@ -163,7 +163,7 @@ export default function Hero({ onOpenBooking }) {
             <div className="pt-2">
               <Link
                 to={slide.ctaLink}
-                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-white hover:text-[#E2C798] transition-colors group"
+                className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-[#1C1917] hover:text-[#9E672B] transition-colors group"
               >
                 <span>&rarr; {slide.ctaText}</span>
               </Link>
@@ -173,7 +173,7 @@ export default function Hero({ onOpenBooking }) {
 
           {/* Right Column: High-Fashion Craft Scene */}
           <div className="lg:col-span-7 relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[500px] max-h-[46vh] lg:max-h-[50vh] aspect-[16/11] bg-stone-900 rounded-2xl overflow-hidden shadow-2xl border border-stone-800 group">
+            <div className="relative w-full max-w-[500px] max-h-[46vh] lg:max-h-[50vh] aspect-[16/11] bg-white rounded-2xl overflow-hidden shadow-xl border border-[#EADDCB] group">
               
               <img
                 key={slide.number}
@@ -183,9 +183,9 @@ export default function Hero({ onOpenBooking }) {
               />
 
               {/* Bottom Craft Watermark Bar */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-transparent to-transparent p-3 sm:p-4 flex items-center justify-between text-white text-[10px] uppercase tracking-wider">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent p-3 sm:p-4 flex items-center justify-between text-white text-[10px] uppercase tracking-wider">
                 <span>Farisha Arif Atelier &bull; Qatar &bull; KSA</span>
-                <span className="text-[#E2C798]">Bespoke Collection</span>
+                <span className="text-[#F4C96B]">Bespoke Collection</span>
               </div>
 
             </div>
@@ -194,7 +194,7 @@ export default function Hero({ onOpenBooking }) {
         </div>
 
         {/* Bottom Pagination & Slide Controls */}
-        <div className="pt-4 border-t border-stone-800/80 flex items-center justify-between relative z-10 shrink-0">
+        <div className="pt-4 border-t border-[#EADDCB] flex items-center justify-between relative z-10 shrink-0">
           
           <div className="text-[11px] font-sans text-stone-500 uppercase tracking-widest hidden sm:block">
             {slide.number} &mdash; 04
@@ -204,7 +204,7 @@ export default function Hero({ onOpenBooking }) {
             <button
               onClick={handlePrev}
               aria-label="Previous slide"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-stone-700 hover:border-white bg-stone-900/80 hover:bg-white hover:text-stone-950 flex items-center justify-center transition-colors text-stone-300"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[#EADDCB] hover:border-[#C79F5E] bg-white hover:bg-[#FAF7F2] flex items-center justify-center transition-colors text-stone-700 shadow-xs"
             >
               <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
@@ -217,8 +217,8 @@ export default function Hero({ onOpenBooking }) {
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`transition-all duration-300 rounded-full ${
                     idx === current
-                      ? 'w-5 sm:w-6 h-2 bg-[#A38257]'
-                      : 'w-2 h-2 bg-stone-700 hover:bg-stone-500'
+                      ? 'w-5 sm:w-6 h-2 bg-[#C79F5E]'
+                      : 'w-2 h-2 bg-[#EADDCB] hover:bg-stone-400'
                   }`}
                 />
               ))}
@@ -227,7 +227,7 @@ export default function Hero({ onOpenBooking }) {
             <button
               onClick={handleNext}
               aria-label="Next slide"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#A38257] text-white flex items-center justify-center hover:bg-[#b8976b] transition-colors"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#C79F5E] text-white flex items-center justify-center hover:bg-[#9E672B] transition-colors shadow-xs"
             >
               <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </button>
@@ -236,7 +236,7 @@ export default function Hero({ onOpenBooking }) {
           <button
             onClick={() => onOpenBooking("Hero Diagonal Action")}
             aria-label="Book Atelier Experience"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-stone-900 border border-stone-700 hover:border-[#A38257] flex items-center justify-center text-stone-300 hover:text-white shadow-xs hover:shadow-md transition-all group"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-[#EADDCB] hover:border-[#C79F5E] flex items-center justify-center text-stone-700 hover:text-[#9E672B] shadow-xs hover:shadow-md transition-all group"
           >
             <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
           </button>

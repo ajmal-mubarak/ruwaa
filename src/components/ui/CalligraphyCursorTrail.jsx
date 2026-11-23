@@ -13,14 +13,14 @@ const CALLIGRAPHY_GLYPHS = [
   'د', 'هـ', 'لا', 'R', 'F', 'ع', 'ر', 'و'
 ];
 
-// Pure black and white / monochrome palette
-const MONOCHROME_PALETTE = [
-  { color: '#FFFFFF', isDark: false },
-  { color: '#F5F5F5', isDark: false },
-  { color: '#000000', isDark: true },
-  { color: '#E5E5E5', isDark: false },
-  { color: '#141414', isDark: true },
-  { color: '#FFFFFF', isDark: false },
+// White and golden luxury palette
+const GOLDEN_PALETTE = [
+  '#9E672B', // Deep Bronze Gold
+  '#C79F5E', // Classic Antique Gold
+  '#B88E4B', // Warm Liquid Gold
+  '#1C1917', // Deep Sumi Ink
+  '#D4AF67', // Metallic Gold
+  '#7D5C26', // Rich Deep Gold
 ];
 
 export default function CalligraphyCursorTrail() {
@@ -66,7 +66,7 @@ export default function CalligraphyCursorTrail() {
       // Spawn small letters along cursor movement path (every ~14px)
       if (dist >= 14 || lastPos.x < 0) {
         const glyph = CALLIGRAPHY_GLYPHS[glyphIndex % CALLIGRAPHY_GLYPHS.length];
-        const tone = MONOCHROME_PALETTE[glyphIndex % MONOCHROME_PALETTE.length];
+        const color = GOLDEN_PALETTE[glyphIndex % GOLDEN_PALETTE.length];
         glyphIndex++;
 
         // Calculate angle of motion along the movement curve
@@ -80,8 +80,7 @@ export default function CalligraphyCursorTrail() {
           angle: angle,
           life: 1.0,
           decay: 0.02, // ~1s lifespan
-          color: tone.color,
-          isDark: tone.isDark,
+          color: color,
           vx: (Math.random() - 0.5) * 0.25,
           vy: -0.15 - Math.random() * 0.2, // delicate floating ink drift
         });
@@ -116,14 +115,9 @@ export default function CalligraphyCursorTrail() {
         ctx.rotate(p.angle);
         ctx.scale(scale, scale);
 
-        // Shadow: ensure black letters are visible against dark background and white letters pop
-        if (p.isDark) {
-          ctx.shadowColor = `rgba(255, 255, 255, ${0.5 * alpha})`;
-          ctx.shadowBlur = 3;
-        } else {
-          ctx.shadowColor = `rgba(0, 0, 0, ${0.9 * alpha})`;
-          ctx.shadowBlur = 3;
-        }
+        // Subtle soft gold glow
+        ctx.shadowColor = `rgba(199, 159, 94, ${0.4 * alpha})`;
+        ctx.shadowBlur = 3;
 
         // Draw ONLY the calligraphy letter - NO card, NO border, NO box
         ctx.fillStyle = p.color;
