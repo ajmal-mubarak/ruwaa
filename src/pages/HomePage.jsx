@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Introduction from '../components/Introduction';
 import HaloCarousel from '../components/HaloCarousel';
+import BrandLogosMarquee from '../components/BrandLogosMarquee';
 import { siteData } from '../data/siteData';
 
 export default function HomePage({ onOpenBooking }) {
   const marqueeServices = siteData.services.slice(0, 3);
-  const marqueeBrands = ["Lexus", "TikTok", "Paris Gallery", "Rituals", "Qatar Masters", "Qatar Museums"];
 
   return (
     <div className="space-y-0 text-[#1C1917]">
@@ -84,21 +84,8 @@ export default function HomePage({ onOpenBooking }) {
         </div>
       </section>
 
-      {/* 5. Clean Brand Collaborations Bar */}
-      <section className="py-14 bg-[#F4EFE6] border-b border-[#EADDCB]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-          <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] text-[#9E672B] font-semibold mb-6">
-            TRUSTED BY PRESTIGIOUS CLIENTS &amp; BRANDS
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 text-stone-700 font-serif text-xl sm:text-2xl">
-            {marqueeBrands.map((brand, i) => (
-              <span key={i} className="hover:text-[#9E672B] transition-colors cursor-default">
-                {brand}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 5. Clean Brand Collaborations Bar - Two Opposing Infinite Auto-Scroll Loops */}
+      <BrandLogosMarquee />
 
       {/* 6. Simple, Elegant Contact CTA */}
       <section className="py-16 sm:py-20 bg-[#FAF7F2] text-[#1C1917] text-center">

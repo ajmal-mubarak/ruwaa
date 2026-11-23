@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowLeft, ExternalLink } from 'lucide-react';
 import { siteData } from '../data/siteData';
@@ -62,6 +62,75 @@ export default function Hero({ onOpenBooking }) {
   const [current, setCurrent] = useState(0);
   const slide = SLIDES[current];
 
+  // Interactive Shader Reveal Mouse & Touch Tracking (Direct DOM Ref - Zero Component Re-renders)
+  const sectionRef = useRef(null);
+  const maskRef = useRef(null);
+  const isHoveringRef = useRef(false);
+  const targetPos = useRef({ x: 500, y: 300 });
+  const currentPos = useRef({ x: 500, y: 300 });
+  const animFrameId = useRef(null);
+
+  useEffect(() => {
+    const revealRadius = window.innerWidth < 768 ? 200 : 320;
+
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      const initialX = rect.width * 0.52;
+      const initialY = rect.height * 0.44;
+      targetPos.current = { x: initialX, y: initialY };
+      currentPos.current = { x: initialX, y: initialY };
+      if (maskRef.current) {
+        const maskVal = `radial-gradient(circle ${revealRadius}px at ${initialX}px ${initialY}px, black 0%, rgba(0,0,0,0.85) 45%, transparent 75%)`;
+        maskRef.current.style.maskImage = maskVal;
+        maskRef.current.style.webkitMaskImage = maskVal;
+      }
+    }
+
+    const updateLoop = () => {
+      // Smooth lerp for fluid liquid-brush tracking
+      const ease = 0.12;
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * ease;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * ease;
+
+      if (maskRef.current) {
+        const x = Math.round(currentPos.current.x * 10) / 10;
+        const y = Math.round(currentPos.current.y * 10) / 10;
+        const maskVal = `radial-gradient(circle ${revealRadius}px at ${x}px ${y}px, black 0%, rgba(0,0,0,0.85) 45%, transparent 75%)`;
+        maskRef.current.style.maskImage = maskVal;
+        maskRef.current.style.webkitMaskImage = maskVal;
+        maskRef.current.style.opacity = isHoveringRef.current ? '0.95' : '0.22';
+      }
+
+      animFrameId.current = requestAnimationFrame(updateLoop);
+    };
+
+    animFrameId.current = requestAnimationFrame(updateLoop);
+    return () => {
+      if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
+    };
+  }, []);
+
+  const handlePointerMove = (e) => {
+    if (!sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    targetPos.current = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+    isHoveringRef.current = true;
+  };
+
+  const handlePointerLeave = () => {
+    isHoveringRef.current = false;
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      targetPos.current = {
+        x: rect.width * 0.52,
+        y: rect.height * 0.44,
+      };
+    }
+  };
+
   const handleNext = () => {
     setCurrent((prev) => (prev + 1) % SLIDES.length);
   };
@@ -71,11 +140,42 @@ export default function Hero({ onOpenBooking }) {
   };
 
   return (
-    <section className="relative bg-transparent border-b border-[#EADDCB] overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-[#1C1917]">
-      
+    <section
+      ref={sectionRef}
+      onPointerMove={handlePointerMove}
+      onPointerEnter={() => { isHoveringRef.current = true; }}
+      onPointerLeave={handlePointerLeave}
+      className="relative bg-[#FAF7F2] border-b border-[#EADDCB] overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-[#1C1917]"
+    >
+      {/* Interactive Shader Reveal Background: Blank Textured Paper mainly + Calligraphy Artwork reveal */}
+      <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+        {/* Layer 1: Blank textured paper - shown mainly */}
+        <img
+          src="/hero-paper-texture.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover opacity-95"
+        />
+
+        {/* Layer 2: Watercolor calligraphy art revealed at cursor position like React Bits Shader Reveal */}
+        <div
+          ref={maskRef}
+          className="absolute inset-0 transition-opacity duration-500 ease-out"
+          style={{ opacity: 0.22 }}
+        >
+          <img
+            src="/hero-calligraphy.jpg"
+            alt="Handcrafted Arabic Calligraphy"
+            className="w-full h-full object-cover mix-blend-multiply"
+          />
+        </div>
+
+        {/* Soft luxury parchment ambient vignette to preserve clean contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2]/65 via-[#FAF7F2]/20 to-[#FAF7F2]/45 pointer-events-none" />
+      </div>
+
       {/* 1. Left Vertical Rail */}
-      <aside 
-        aria-label="Social and location links" 
+      <aside
+        aria-label="Social and location links"
         className="hidden md:flex flex-col justify-between items-center w-14 lg:w-16 py-8 border-r border-[#EADDCB] bg-[#F4EFE6]/70 backdrop-blur-xs shrink-0 z-20"
       >
         <div className="w-2 h-2 rounded-full bg-[#C79F5E]" />
@@ -119,23 +219,13 @@ export default function Hero({ onOpenBooking }) {
 
       {/* 2. Main Stage (Calibrated to fit viewport height with luxury light atmosphere) */}
       <div className="flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-4 sm:py-6 lg:py-6 relative z-10 overflow-hidden">
-        
-        {/* Subtle Arabic calligraphy watermark in ambient background */}
-        <div 
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 opacity-[0.035] mix-blend-multiply bg-repeat z-0"
-          style={{
-            backgroundImage: `url('/arabic-pattern.jpg')`,
-            backgroundSize: '480px auto'
-          }}
-        />
 
         {/* Top/Middle Grid: Left Content + Right Showcase Image */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto relative z-10 py-2 sm:py-4">
-          
+
           {/* Left Column: Number + Bold Headline + Subtitle (1 line) + Description (3 lines in transparent golden box) + Link */}
           <div className="lg:col-span-7 space-y-3 sm:space-y-4 text-left">
-            
+
             {/* Slide Large Highlighted Number */}
             <span className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#9E672B] font-semibold block -mb-1 drop-shadow-2xs">
               {slide.number}
@@ -153,7 +243,7 @@ export default function Hero({ onOpenBooking }) {
             <p className="font-serif italic text-base sm:text-lg lg:text-[19px] text-[#2B231A] font-medium leading-snug whitespace-nowrap overflow-hidden text-ellipsis">
               {slide.subtitle}
             </p>
-            
+
             {/* Description - Clean 3 Lines */}
             <p className="text-[#292524] font-normal text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-xl">
               {slide.description}
@@ -174,7 +264,6 @@ export default function Hero({ onOpenBooking }) {
           {/* Right Column: High-Fashion Craft Scene */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-[460px] max-h-[46vh] lg:max-h-[50vh] aspect-[16/11] bg-white rounded-2xl overflow-hidden shadow-xl border border-[#EADDCB] group">
-              
               <img
                 key={slide.number}
                 src={slide.scene.image}
@@ -187,7 +276,6 @@ export default function Hero({ onOpenBooking }) {
                 <span>Farisha Arif Atelier &bull; Qatar &bull; KSA</span>
                 <span className="text-[#F4C96B] font-semibold">Bespoke Collection</span>
               </div>
-
             </div>
           </div>
 
@@ -195,7 +283,7 @@ export default function Hero({ onOpenBooking }) {
 
         {/* Bottom Pagination & Slide Controls */}
         <div className="pt-4 border-t border-[#EADDCB] flex items-center justify-between relative z-10 shrink-0">
-          
+
           <div className="text-xs sm:text-sm font-sans text-[#1C1917] font-semibold uppercase tracking-widest hidden sm:block">
             {slide.number} &mdash; 04
           </div>
@@ -215,11 +303,10 @@ export default function Hero({ onOpenBooking }) {
                   key={idx}
                   onClick={() => setCurrent(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full ${
-                    idx === current
-                      ? 'w-5 sm:w-6 h-2 bg-[#C79F5E]'
-                      : 'w-2 h-2 bg-[#EADDCB] hover:bg-stone-400'
-                  }`}
+                  className={`transition-all duration-300 rounded-full ${idx === current
+                    ? 'w-5 sm:w-6 h-2 bg-[#C79F5E]'
+                    : 'w-2 h-2 bg-[#EADDCB] hover:bg-stone-400'
+                    }`}
                 />
               ))}
             </div>
