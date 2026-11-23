@@ -29,27 +29,39 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-ink-900 font-sans selection:bg-[#E2C798] selection:text-ink-900">
+      <div className="min-h-screen flex flex-col bg-white text-ink-900 font-sans selection:bg-[#E2C798] selection:text-ink-900 relative">
         
-        {/* Simple & Responsive Sticky Navigation */}
-        <Navbar onOpenBooking={(srv) => handleOpenBooking(srv)} />
+        {/* Subtle Arabic Calligraphy Watermark Background */}
+        <div 
+          aria-hidden="true"
+          className="fixed inset-0 pointer-events-none z-0 opacity-[0.035] mix-blend-multiply bg-repeat"
+          style={{
+            backgroundImage: `url('/arabic-pattern.jpg')`,
+            backgroundSize: '520px auto'
+          }}
+        />
 
-        {/* Multi-Page Routes */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/about" element={<AboutPage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/services" element={<ServicesPage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/portfolio" element={<PortfolioPage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/collaborations" element={<CollaborationsPage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/why-ruwaa" element={<WhyRuwaaPage onOpenBooking={handleOpenBooking} />} />
-            <Route path="/contact" element={<ContactPage prefilledService={selectedService} />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
+        <div className="relative z-10 flex flex-col min-h-screen flex-grow">
+          {/* Simple & Responsive Sticky Navigation */}
+          <Navbar onOpenBooking={(srv) => handleOpenBooking(srv)} />
 
-        {/* Global Footer */}
-        <Footer />
+          {/* Multi-Page Routes */}
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<HomePage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/about" element={<AboutPage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/services" element={<ServicesPage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/portfolio" element={<PortfolioPage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/collaborations" element={<CollaborationsPage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/why-ruwaa" element={<WhyRuwaaPage onOpenBooking={handleOpenBooking} />} />
+              <Route path="/contact" element={<ContactPage prefilledService={selectedService} />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+
+          {/* Global Footer */}
+          <Footer />
+        </div>
 
         {/* Booking Modal */}
         <BookingModal
@@ -58,7 +70,7 @@ export default function App() {
           initialService={selectedService}
         />
 
-        {/* Compact Floating WhatsApp Button (Never overlaps page content) */}
+        {/* Compact Floating WhatsApp Button */}
         <aside aria-label="Contact via WhatsApp" className="fixed bottom-5 right-5 z-40">
           <a
             href={siteData.brand.whatsappUrl}

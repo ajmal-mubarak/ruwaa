@@ -7,7 +7,17 @@ export default function Hero({ onOpenBooking }) {
   return (
     <section className="relative bg-white pt-8 sm:pt-14 pb-16 sm:pb-24 border-b border-stone-100 overflow-hidden">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+      {/* Subtle Calligraphy Pattern Ambient Background */}
+      <div 
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute inset-0 opacity-[0.04] mix-blend-multiply bg-repeat z-0"
+        style={{
+          backgroundImage: `url('/arabic-pattern.jpg')`,
+          backgroundSize: '460px auto'
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         
         {/* 2-Column Standard Editorial Hero Layout (Like Caligra & Divi) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
