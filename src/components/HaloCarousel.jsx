@@ -198,8 +198,8 @@ export default function HaloCarousel({ onOpenBooking }) {
         {/* ======================================================== */}
         <div className="hidden md:flex relative w-full flex-1 min-h-[380px] max-h-[460px] items-center justify-center overflow-hidden my-auto">
 
-          {/* Overhead Cards Following the Half-Circle Line closely with low gap - Lifted Up to Prevent Text Overlap */}
-          <div className="absolute -top-8 lg:-top-12 inset-x-0 h-[230px] flex items-center justify-center">
+          {/* Overhead Cards Following the Half-Circle Line closely with small elegant gap above text */}
+          <div className="absolute -top-2 lg:-top-3 inset-x-0 h-[230px] flex items-center justify-center">
             {items.map((item, i) => {
               const virtualCurrent = -angle / stepAngle;
               let diff = i - (virtualCurrent % total);
@@ -262,8 +262,8 @@ export default function HaloCarousel({ onOpenBooking }) {
             })}
           </div>
 
-          {/* Center Editorial Text Beneath the Overhead Arc with Generous Clearance */}
-          <div className="absolute top-[225px] lg:top-[235px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
+          {/* Center Editorial Text Beneath the Overhead Arc with Small Refined Gap */}
+          <div className="absolute top-[200px] lg:top-[205px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
             <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#9E672B] font-semibold font-sans mb-1 drop-shadow-xs">
               ARCHIVE 08 &bull; OUR PORTFOLIO
             </p>
@@ -303,7 +303,7 @@ export default function HaloCarousel({ onOpenBooking }) {
           <div
             ref={mobileScrollRef}
             onScroll={handleMobileScroll}
-            className="flex items-center gap-3 overflow-x-auto snap-x snap-mandatory py-3 px-4 no-scrollbar scroll-smooth"
+            className="flex items-center gap-3 overflow-x-auto snap-x snap-mandatory py-3 px-4 no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] scroll-smooth"
             style={{ WebkitOverflowScrolling: 'touch' }}
           >
             {items.map((item, idx) => {
