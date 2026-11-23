@@ -16,6 +16,7 @@ import ContactPage from './pages/ContactPage';
 
 import { siteData } from './data/siteData';
 import { MessageCircle } from 'lucide-react';
+import CalligraphyCursorTrail from './components/ui/CalligraphyCursorTrail';
 
 export default function App() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -29,6 +30,8 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      {/* Interactive Calligraphy Letter Cursor Trail */}
+      <CalligraphyCursorTrail />
       <div className="min-h-screen flex flex-col bg-[#0E0E0D] text-stone-100 font-sans selection:bg-[#A38257] selection:text-white relative">
         
         {/* Subtle Arabic Calligraphy Watermark Background */}
