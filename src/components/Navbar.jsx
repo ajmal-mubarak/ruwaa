@@ -67,8 +67,8 @@ export default function Navbar({ onOpenBooking }) {
                 `text-[11px] uppercase tracking-[0.14em] font-sans whitespace-nowrap transition-colors relative py-1 focus:outline-none ${
                   isActive
                     ? 'text-[#1C1917] font-bold after:w-full after:bg-[#C79F5E]'
-                    : 'text-[#1C1917]/85 hover:text-[#9E672B] font-semibold after:w-0 hover:after:w-full after:bg-[#C79F5E]'
-                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:transition-all after:duration-300`
+                    : 'text-[#1C1917]/80 hover:text-[#9E672B] font-semibold after:w-0 hover:after:w-full after:bg-[#C79F5E]'
+                } after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:transition-all after:duration-300`
               }
             >
               {link.name}

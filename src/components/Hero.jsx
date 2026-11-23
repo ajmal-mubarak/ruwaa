@@ -71,7 +71,7 @@ export default function Hero({ onOpenBooking }) {
   };
 
   return (
-    <section className="relative bg-[#FAF7F2] border-b border-[#EADDCB] overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-[#1C1917]">
+    <section className="relative bg-transparent border-b border-[#EADDCB] overflow-hidden lg:h-[calc(100vh-4.5rem)] flex flex-col md:flex-row text-[#1C1917]">
       
       {/* 1. Left Vertical Rail */}
       <aside 
@@ -80,35 +80,35 @@ export default function Hero({ onOpenBooking }) {
       >
         <div className="w-2 h-2 rounded-full bg-[#C79F5E]" />
 
-        <div className="flex flex-col items-center gap-4 text-[10px] uppercase tracking-[0.25em] text-[#1C1917] font-bold">
+        <div className="flex flex-col items-center gap-4 text-[11px] uppercase tracking-[0.25em] text-[#1C1917] font-semibold">
           <div className="h-20 flex items-center justify-center">
             <a
               href={siteData.brand.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1C1917] font-bold hover:text-[#9E672B] transition-colors transform -rotate-90 whitespace-nowrap"
+              className="hover:text-[#9E672B] transition-colors transform -rotate-90 whitespace-nowrap"
             >
               Instagram
             </a>
           </div>
 
-          <div className="w-4 h-[1px] bg-[#C79F5E]" />
+          <div className="w-4 h-[1.5px] bg-[#C79F5E]" />
 
           <div className="h-20 flex items-center justify-center">
             <a
               href={siteData.brand.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1C1917] font-bold hover:text-emerald-700 transition-colors transform -rotate-90 whitespace-nowrap"
+              className="hover:text-emerald-700 transition-colors transform -rotate-90 whitespace-nowrap"
             >
               WhatsApp
             </a>
           </div>
 
-          <div className="w-4 h-[1px] bg-[#C79F5E]" />
+          <div className="w-4 h-[1.5px] bg-[#C79F5E]" />
 
           <div className="h-28 flex items-center justify-center">
-            <span className="text-[#1C1917] font-bold transform -rotate-90 whitespace-nowrap cursor-default">
+            <span className="text-[#44403C] font-semibold transform -rotate-90 whitespace-nowrap cursor-default">
               Qatar &bull; KSA
             </span>
           </div>
@@ -120,10 +120,10 @@ export default function Hero({ onOpenBooking }) {
       {/* 2. Main Stage (Calibrated to fit viewport height with luxury light atmosphere) */}
       <div className="flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-14 py-4 sm:py-6 lg:py-6 relative z-10 overflow-hidden">
         
-        {/* Soft Arabic calligraphy watermark in ambient background */}
+        {/* Subtle Arabic calligraphy watermark in ambient background */}
         <div 
           aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 opacity-[0.02] mix-blend-multiply bg-repeat z-0"
+          className="pointer-events-none select-none absolute inset-0 opacity-[0.035] mix-blend-multiply bg-repeat z-0"
           style={{
             backgroundImage: `url('/arabic-pattern.jpg')`,
             backgroundSize: '480px auto'
@@ -131,49 +131,49 @@ export default function Hero({ onOpenBooking }) {
         />
 
         {/* Top/Middle Grid: Left Content + Right Showcase Image */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center my-auto relative z-10 py-2 sm:py-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center my-auto relative z-10 py-2 sm:py-4">
           
-          {/* Left Column: Number + Bold Headline + Paragraph + Link */}
-          <div className="lg:col-span-5 space-y-3 sm:space-y-4 text-left">
+          {/* Left Column: Number + Bold Headline + Subtitle (1 line) + Description (3 lines in transparent golden box) + Link */}
+          <div className="lg:col-span-7 space-y-3 sm:space-y-4 text-left">
             
-            {/* Slide Large Crisp Number */}
-            <span className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1C1917] font-bold block -mb-1">
+            {/* Slide Large Highlighted Number */}
+            <span className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#9E672B] font-semibold block -mb-1 drop-shadow-2xs">
               {slide.number}
             </span>
 
             {/* Huge Bold Title with Accent Dot */}
-            <div className="flex items-baseline gap-2">
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#1C1917] font-bold tracking-tight">
+            <div className="flex items-baseline gap-2.5">
+              <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl text-[#1C1917] font-semibold tracking-tight">
                 {slide.title}
               </h1>
-              <span className={`w-3 h-3 rounded-full ${slide.dotColor} shrink-0 animate-pulse`} />
+              <span className={`w-3.5 h-3.5 rounded-full ${slide.dotColor} shrink-0 animate-pulse`} />
             </div>
 
-            {/* Subtitle - Bold Dark Color */}
-            <p className="font-serif italic text-base sm:text-lg text-[#1C1917] font-bold tracking-wide">
+            {/* Subtitle - In One Line */}
+            <p className="font-serif italic text-base sm:text-lg lg:text-[19px] text-[#2B231A] font-medium leading-snug whitespace-nowrap overflow-hidden text-ellipsis">
               {slide.subtitle}
             </p>
             
-            {/* Description - Bold Dark Color */}
-            <p className="text-[#1C1917] font-semibold text-xs sm:text-sm leading-relaxed max-w-md">
+            {/* Description - Clean 3 Lines */}
+            <p className="text-[#292524] font-normal text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-xl">
               {slide.description}
             </p>
 
-            {/* Arrow Link - Bold and Prominent */}
-            <div className="pt-2">
+            {/* Action Link Highlight */}
+            <div className="pt-1 sm:pt-2">
               <Link
                 to={slide.ctaLink}
-                className="inline-flex items-center gap-2 text-xs sm:text-sm uppercase tracking-[0.22em] font-bold text-[#1C1917] hover:text-[#9E672B] transition-colors group"
+                className="inline-flex items-center gap-2.5 text-xs sm:text-sm uppercase tracking-[0.22em] font-bold text-[#1C1917] hover:text-[#9E672B] transition-all group border-b-2 border-[#1C1917] pb-1 hover:border-[#9E672B]"
               >
-                <span className="border-b-2 border-[#1C1917] pb-0.5 group-hover:border-[#9E672B]">&rarr; {slide.ctaText}</span>
+                <span>&rarr; {slide.ctaText}</span>
               </Link>
             </div>
 
           </div>
 
           {/* Right Column: High-Fashion Craft Scene */}
-          <div className="lg:col-span-7 relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[500px] max-h-[46vh] lg:max-h-[50vh] aspect-[16/11] bg-white rounded-2xl overflow-hidden shadow-xl border border-[#EADDCB] group">
+          <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[460px] max-h-[46vh] lg:max-h-[50vh] aspect-[16/11] bg-white rounded-2xl overflow-hidden shadow-xl border border-[#EADDCB] group">
               
               <img
                 key={slide.number}
@@ -183,9 +183,9 @@ export default function Hero({ onOpenBooking }) {
               />
 
               {/* Bottom Craft Watermark Bar */}
-              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent p-3 sm:p-4 flex items-center justify-between text-white text-[10px] uppercase tracking-wider">
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent p-3.5 sm:p-4 flex items-center justify-between text-white text-[11px] uppercase tracking-wider font-medium">
                 <span>Farisha Arif Atelier &bull; Qatar &bull; KSA</span>
-                <span className="text-[#F4C96B]">Bespoke Collection</span>
+                <span className="text-[#F4C96B] font-semibold">Bespoke Collection</span>
               </div>
 
             </div>
@@ -196,7 +196,7 @@ export default function Hero({ onOpenBooking }) {
         {/* Bottom Pagination & Slide Controls */}
         <div className="pt-4 border-t border-[#EADDCB] flex items-center justify-between relative z-10 shrink-0">
           
-          <div className="text-[11px] font-sans text-[#1C1917] font-bold uppercase tracking-widest hidden sm:block">
+          <div className="text-xs sm:text-sm font-sans text-[#1C1917] font-semibold uppercase tracking-widest hidden sm:block">
             {slide.number} &mdash; 04
           </div>
 

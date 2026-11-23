@@ -18,7 +18,7 @@ export default function Introduction() {
             Beauty Beyond Imagination.
           </h2>
           <div className="w-12 h-[1px] bg-[#C79F5E] mx-auto my-5" />
-          <p className="text-[#57534E] font-light text-xs sm:text-sm md:text-base leading-relaxed">
+          <p className="text-[#292524] text-xs sm:text-sm md:text-base leading-relaxed">
             Discover the beauty of calligraphy through a unique blend of traditional artistry and modern luxury. At Ruwaa Artistry, every stroke tells a story, every detail carries meaning, and every creation is made to leave a lasting impression.
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function Introduction() {
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#9E672B] font-semibold">Typography</span>
               <h3 className="font-serif text-xl text-[#1C1917] mt-1 mb-2">Arabic &amp; English Calligraphy</h3>
-              <p className="text-xs text-[#57534E] font-light leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-[#292524] leading-relaxed">
                 Classical Thuluth and Diwani geometry combined with modern flowing English script for bespoke commissions.
               </p>
             </div>
@@ -54,7 +54,7 @@ export default function Introduction() {
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#9E672B] font-semibold">Luxury Keepsakes</span>
               <h3 className="font-serif text-xl text-[#1C1917] mt-1 mb-2">Glass &amp; Bottle Engraving</h3>
-              <p className="text-xs text-[#57534E] font-light leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-[#292524] leading-relaxed">
                 Hand-engraved luxury fragrance bottles and glassware finished with shimmering metallic leaf and liquid gold.
               </p>
             </div>
@@ -71,7 +71,7 @@ export default function Introduction() {
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#9E672B] font-semibold">Artisanal Objects</span>
               <h3 className="font-serif text-xl text-[#1C1917] mt-1 mb-2">Ceramics &amp; Clay Pottery</h3>
-              <p className="text-xs text-[#57534E] font-light leading-relaxed">
+              <p className="text-xs sm:text-[13px] text-[#292524] leading-relaxed">
                 Personalized Arabic poetry strokes on hand-turned ceramic mugs and decorative vessels combining functional beauty.
               </p>
             </div>
