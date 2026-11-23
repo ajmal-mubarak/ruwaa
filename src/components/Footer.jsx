@@ -20,18 +20,18 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#181614] text-[#E8DFD3] pt-16 pb-12 border-t border-stone-800">
+    <footer className="bg-[#0B0B0A] text-[#E8DFD3] pt-16 pb-12 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         
         {/* Brand Center Header */}
         <div className="text-center space-y-3 pb-10 border-b border-stone-800">
-          <div className="w-10 h-10 rounded-full border border-stone-700 mx-auto flex items-center justify-center font-calligraphy text-2xl text-stone-200">
+          <div className="w-10 h-10 rounded-full border border-[#A38257] mx-auto flex items-center justify-center font-calligraphy text-2xl text-[#E2C798]">
             R
           </div>
           <h2 className="font-serif text-2xl sm:text-3xl tracking-[0.16em] text-white">
             RUWAA ARTISTRY
           </h2>
-          <p className="font-serif italic text-base sm:text-lg text-[#C5A880] font-light">
+          <p className="font-serif italic text-base sm:text-lg text-[#E2C798] font-light">
             The Art of Calligraphy, Crafted with Elegance.
           </p>
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.22em] text-stone-400 font-sans max-w-xl mx-auto leading-relaxed">
@@ -39,28 +39,33 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Navigation & Socials */}
-        <div className="py-8 flex flex-col md:flex-row items-center justify-between gap-6 border-b border-stone-800">
+        {/* Navigation & Socials: Shown line-by-line as requested */}
+        <div className="py-12 flex flex-col items-center justify-center gap-8 border-b border-stone-800">
           
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.18em] text-stone-400">
+          {/* Vertical Line-by-Line Nav Links */}
+          <nav 
+            aria-label="Footer Navigation" 
+            className="flex flex-col items-center space-y-4 text-xs uppercase tracking-[0.26em] text-stone-400 font-medium"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
-                className="hover:text-white transition-colors"
+                className="hover:text-[#E2C798] transition-colors py-0.5 tracking-[0.26em]"
               >
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Social and back to top icons */}
+          <div className="flex items-center gap-4 pt-6 border-t border-stone-800/80 w-full max-w-xs justify-center">
             <a
               href={siteData.brand.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 rounded-full border border-stone-700 hover:border-white text-stone-300 hover:text-white flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-full border border-stone-700 hover:border-[#E2C798] text-stone-300 hover:text-[#E2C798] flex items-center justify-center transition-colors bg-stone-900/60"
             >
               <InstagramIcon className="w-4 h-4" />
             </a>
@@ -70,7 +75,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="w-8 h-8 rounded-full border border-stone-700 hover:border-white text-stone-300 hover:text-white flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-full border border-stone-700 hover:border-emerald-500 text-stone-300 hover:text-emerald-400 flex items-center justify-center transition-colors bg-stone-900/60"
             >
               <MessageCircle className="w-4 h-4" />
             </a>
@@ -78,7 +83,7 @@ export default function Footer() {
             <button
               onClick={scrollToTop}
               aria-label="Back to top"
-              className="w-8 h-8 rounded-full border border-stone-700 hover:border-white text-stone-300 hover:text-white flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-full border border-stone-700 hover:border-white text-stone-300 hover:text-white flex items-center justify-center transition-colors bg-stone-900/60"
             >
               <ArrowUp className="w-4 h-4" />
             </button>
@@ -89,7 +94,7 @@ export default function Footer() {
         {/* Bottom Credits */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 font-sans tracking-wider gap-3 text-center sm:text-left">
           <p>
-            Instagram: <a href={siteData.brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-stone-300 hover:underline">{siteData.brand.instagram}</a>
+            Instagram: <a href={siteData.brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-stone-300 hover:text-[#E2C798] transition-colors">{siteData.brand.instagram}</a>
           </p>
           <p>
             &copy; {new Date().getFullYear()} Ruwaa Artistry. All Rights Reserved.
