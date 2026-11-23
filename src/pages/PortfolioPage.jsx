@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { siteData } from '../data/siteData';
 import PortfolioModal from '../components/PortfolioModal';
+import Endless from '../components/ui/endless';
 import { Eye } from 'lucide-react';
 
 export default function PortfolioPage({ onOpenBooking }) {
@@ -34,6 +35,15 @@ export default function PortfolioPage({ onOpenBooking }) {
             Discover the Art. Experience the Details.
           </p>
         </div>
+      </section>
+
+      {/* 3D Endless Corridor Showcase (Clickable Planes) */}
+      <section className="border-b border-stone-800 relative">
+        <Endless 
+          title="Endless Artistry"
+          caption="Every Stroke Tells A Story • Doha &amp; Riyadh"
+          onCardClick={(item) => setActiveModalItem(item)}
+        />
       </section>
 
       {/* Category Filter Navigation */}
