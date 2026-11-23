@@ -13,8 +13,39 @@ export default function HomePage({ onOpenBooking }) {
   return (
     <div className="space-y-0">
       
-      {/* 1. Hero Section (Caligra / Divi Standard 2-Column) */}
+      {/* 1. Hero Section (Fits 100% within initial screen viewport) */}
       <Hero onOpenBooking={onOpenBooking} />
+
+      {/* 4 Feature Strip (Clean dedicated bar below Hero) */}
+      <section className="bg-[#FAFAFA] border-b border-stone-200/80 py-6 sm:py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+          
+          <div className="space-y-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#A38257] font-semibold">01 &bull; Service</span>
+            <h4 className="font-serif text-base sm:text-lg text-stone-900 font-medium">Glass &amp; Bottle Engraving</h4>
+            <p className="text-xs text-stone-500 font-light">24K liquid gold inlays on crystal</p>
+          </div>
+
+          <div className="space-y-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#A38257] font-semibold">02 &bull; Surface</span>
+            <h4 className="font-serif text-base sm:text-lg text-stone-900 font-medium">Custom Ceramics &amp; Pottery</h4>
+            <p className="text-xs text-stone-500 font-light">Hand-turned functional pottery</p>
+          </div>
+
+          <div className="space-y-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#A38257] font-semibold">03 &bull; Events</span>
+            <h4 className="font-serif text-base sm:text-lg text-stone-900 font-medium">Live Calligraphy Activations</h4>
+            <p className="text-xs text-stone-500 font-light">Brand galas &amp; luxury events</p>
+          </div>
+
+          <div className="space-y-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#A38257] font-semibold">04 &bull; Celebrations</span>
+            <h4 className="font-serif text-base sm:text-lg text-stone-900 font-medium">Weddings &amp; Keepsakes</h4>
+            <p className="text-xs text-stone-500 font-light">Place cards, fans &amp; guest books</p>
+          </div>
+
+        </div>
+      </section>
 
       {/* 2. Introduction Section (Elegance In Every Letter) */}
       <Introduction />
