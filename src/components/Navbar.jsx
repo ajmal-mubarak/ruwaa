@@ -32,8 +32,10 @@ export default function Navbar({ onOpenBooking }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-white transition-all duration-300 ${
-        isScrolled ? 'shadow-xs border-b border-stone-200/80' : 'border-b border-stone-100'
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/85 backdrop-blur-md shadow-xs border-b border-stone-200/60' 
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between">
