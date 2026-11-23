@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { siteData } from '../data/siteData';
+import ArcList from './ArcList';
 
 export default function Hero({ onOpenBooking }) {
   return (
-    <section className="relative bg-white border-b border-stone-100 overflow-hidden flex items-center py-6 sm:py-8 lg:py-0 lg:h-[calc(100vh-4.25rem)] lg:min-h-[500px] lg:max-h-[620px]">
+    <section className="relative bg-white border-b border-stone-100 overflow-hidden flex items-center py-6 sm:py-10 lg:py-12 min-h-[calc(100vh-4.25rem)]">
       
       {/* Subtle Calligraphy Pattern Ambient Background */}
       <div 
@@ -16,18 +17,18 @@ export default function Hero({ onOpenBooking }) {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 w-full my-auto">
         
-        {/* 2-Column Balanced Editorial Hero Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        {/* 2-Column Balanced Editorial Hero Layout with Arc List */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
           
           {/* Left: Typography & Story */}
-          <div className="lg:col-span-7 space-y-3.5 sm:space-y-4 text-left">
+          <div className="lg:col-span-6 space-y-3.5 sm:space-y-4 text-left">
             
             {/* Small uppercase kicker with line */}
             <div className="flex items-center gap-2.5">
               <span className="w-6 h-[1px] bg-[#A38257]" />
-              <p className="text-[10px] sm:text-[11px] font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans">
+              <p className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] uppercase text-stone-500 font-sans">
                 THE ELEGANCE OF WRITING
               </p>
             </div>
@@ -65,32 +66,15 @@ export default function Hero({ onOpenBooking }) {
                 onClick={() => onOpenBooking("Hero Book Calligraphy Experience")}
                 className="w-full sm:w-auto px-7 py-3 text-xs font-medium tracking-[0.18em] uppercase text-stone-900 border border-stone-800 hover:bg-stone-900 hover:text-white transition-colors text-center"
               >
-                Book a Calligraphy Experience
+                Book an Experience
               </button>
             </div>
 
           </div>
 
-          {/* Right: Studio Craft Photography (Proportional & Contained) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[260px] sm:max-w-[290px] lg:max-w-[310px]">
-              
-              {/* Primary Calligraphy Craft Photograph */}
-              <div className="aspect-[4/5] overflow-hidden bg-stone-100 shadow-md border border-stone-200">
-                <img
-                  src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop"
-                  alt="Farisha Arif - Hand Engraved Luxury Perfume Flacon"
-                  className="w-full h-full object-cover standard-image-hover"
-                />
-              </div>
-
-              {/* Subtle Atelier Note */}
-              <div className="mt-2 flex items-center justify-between text-[10px] text-stone-500 font-sans border-t border-stone-200 pt-1.5">
-                <span className="uppercase tracking-[0.16em] font-medium text-stone-700">Farisha Arif Atelier</span>
-                <span className="italic text-stone-400">Doha &bull; Riyadh</span>
-              </div>
-
-            </div>
+          {/* Right: Arc List Animation (Turning along an arc beside image preview) */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end overflow-hidden">
+            <ArcList />
           </div>
 
         </div>
