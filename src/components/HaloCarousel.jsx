@@ -198,8 +198,8 @@ export default function HaloCarousel({ onOpenBooking }) {
         {/* ======================================================== */}
         <div className="hidden md:flex relative w-full flex-1 min-h-[380px] max-h-[460px] items-center justify-center overflow-hidden my-auto">
 
-          {/* Overhead Cards Following the Half-Circle Line closely with low gap */}
-          <div className="absolute top-1 inset-x-0 h-[240px] flex items-center justify-center">
+          {/* Overhead Cards Following the Half-Circle Line closely with low gap - Lifted Up to Prevent Text Overlap */}
+          <div className="absolute -top-8 lg:-top-12 inset-x-0 h-[230px] flex items-center justify-center">
             {items.map((item, i) => {
               const virtualCurrent = -angle / stepAngle;
               let diff = i - (virtualCurrent % total);
@@ -233,7 +233,7 @@ export default function HaloCarousel({ onOpenBooking }) {
                     : 'shadow-md opacity-90 hover:opacity-100 hover:ring-1 hover:ring-[#C79F5E]/60'
                     }`}
                   style={{
-                    width: 'clamp(145px, 15vw, 175px)',
+                    width: 'clamp(140px, 14.5vw, 168px)',
                     aspectRatio: '1 / 1',
                     transform: `translate3d(${x}px, ${y}px, 0) rotate(${cardAngle}deg) scale(${scale})`,
                     transformOrigin: '50% 120%',
@@ -262,8 +262,8 @@ export default function HaloCarousel({ onOpenBooking }) {
             })}
           </div>
 
-          {/* Center Editorial Text Beneath the Overhead Arc */}
-          <div className="absolute top-[210px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
+          {/* Center Editorial Text Beneath the Overhead Arc with Generous Clearance */}
+          <div className="absolute top-[225px] lg:top-[235px] inset-x-4 max-w-xl mx-auto text-center pointer-events-none z-30">
             <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#9E672B] font-semibold font-sans mb-1 drop-shadow-xs">
               ARCHIVE 08 &bull; OUR PORTFOLIO
             </p>

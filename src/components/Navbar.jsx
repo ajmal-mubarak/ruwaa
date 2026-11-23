@@ -77,32 +77,31 @@ export default function Navbar({ onOpenBooking }) {
         </nav>
 
         {/* Right: Actions */}
-        <div className="shrink-0 pl-4 lg:pl-8 flex items-center gap-2.5">
+        <div className="shrink-0 pl-1 sm:pl-4 lg:pl-8 flex items-center gap-1.5 sm:gap-2.5">
           <a
             href={siteData.brand.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             title="Chat on WhatsApp"
-            className="w-8 h-8 rounded-full border border-[#EADDCB] hover:border-emerald-500 text-stone-600 hover:text-emerald-600 flex items-center justify-center transition-colors focus:outline-none bg-white"
+            className="w-8 h-8 rounded-full border border-[#EADDCB] hover:border-emerald-500 text-stone-600 hover:text-emerald-600 flex items-center justify-center transition-colors focus:outline-none bg-white shrink-0"
           >
             <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
           </a>
           
           <button
             onClick={() => onOpenBooking("Header Book Experience")}
-            className="text-[11px] uppercase tracking-[0.14em] px-3.5 py-1.5 sm:px-4 sm:py-2 bg-[#C79F5E] hover:bg-[#9E672B] text-white transition-colors whitespace-nowrap focus:outline-none rounded-sm font-medium shadow-sm"
+            className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.14em] px-3 py-1.5 sm:px-4 sm:py-2 bg-[#C79F5E] hover:bg-[#9E672B] text-white transition-colors whitespace-nowrap focus:outline-none rounded-sm font-medium shadow-sm shrink-0"
           >
             Book
           </button>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - 3 Lines Hamburger Only, No Text, Fully Visible */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-1.5 text-stone-700 hover:text-[#9E672B] focus:outline-none flex items-center gap-1 border border-[#EADDCB] rounded px-2 bg-white"
+            className="lg:hidden w-8 h-8 flex items-center justify-center text-[#1C1917] hover:text-[#9E672B] focus:outline-none border border-[#EADDCB] rounded-md bg-white shadow-xs shrink-0"
             aria-label="Toggle navigation menu"
           >
-            <span className="text-[10px] uppercase tracking-widest font-medium">Menu</span>
-            {mobileMenuOpen ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 text-[#1C1917]" /> : <Menu className="w-4 h-4 text-[#1C1917] stroke-[2.2]" />}
           </button>
         </div>
 
