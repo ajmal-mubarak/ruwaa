@@ -89,7 +89,7 @@ export default function HaloCarousel({ onOpenBooking }) {
     const currentVirtualIdx = -angle / stepAngle;
     const currentBase = Math.round(currentVirtualIdx);
     const currentMod = ((currentBase % total) + total) % total;
-    
+
     let diff = index - currentMod;
     if (diff > total / 2) diff -= total;
     if (diff < -total / 2) diff += total;
@@ -129,7 +129,7 @@ export default function HaloCarousel({ onOpenBooking }) {
   const activeItem = items[selectedIdx] || items[0];
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative bg-gradient-to-b from-[#141413] via-[#0E0E0D] to-[#0A0A09] text-white min-h-[560px] md:h-[calc(100vh-4.5rem)] md:max-h-[760px] flex flex-col justify-between overflow-hidden select-none py-4 sm:py-5 border-b border-stone-800"
       onPointerDown={handlePointerDown}
@@ -139,7 +139,7 @@ export default function HaloCarousel({ onOpenBooking }) {
       style={{ cursor: isDragging ? 'grabbing' : 'default' }}
     >
       {/* Arabic calligraphy watermark pattern in ambient background */}
-      <div 
+      <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.045] mix-blend-screen bg-repeat z-0"
         style={{
@@ -149,13 +149,13 @@ export default function HaloCarousel({ onOpenBooking }) {
       />
 
       {/* Radial overhead halo spotlight */}
-      <div 
-        aria-hidden="true" 
+      <div
+        aria-hidden="true"
         className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[360px] bg-gradient-to-b from-[#A38257]/15 via-transparent to-transparent blur-3xl rounded-full"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col justify-between h-full flex-grow">
-        
+
         {/* Top Badges & Controls Header Bar */}
         <div className="flex items-center justify-between shrink-0 pt-1 pb-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900/80 border border-stone-800 text-[10px] uppercase tracking-[0.2em] text-[#E2C798] font-medium backdrop-blur-xs">
@@ -197,7 +197,7 @@ export default function HaloCarousel({ onOpenBooking }) {
         {/* DESKTOP VIEW (md and up): TRUE HALF-CIRCLE ARC WITH LOW GAP */}
         {/* ======================================================== */}
         <div className="hidden md:flex relative w-full flex-1 min-h-[380px] max-h-[460px] items-center justify-center overflow-hidden my-auto">
-          
+
           {/* Overhead Cards Following the Half-Circle Line closely with low gap */}
           <div className="absolute top-1 inset-x-0 h-[240px] flex items-center justify-center">
             {items.map((item, i) => {
@@ -228,11 +228,10 @@ export default function HaloCarousel({ onOpenBooking }) {
                     e.stopPropagation();
                     snapToCard(i);
                   }}
-                  className={`absolute rounded-[26px] overflow-hidden cursor-pointer transition-shadow duration-300 ${
-                    isCenter 
-                      ? 'ring-2 ring-[#A38257] shadow-[0_15px_45px_rgba(0,0,0,0.95)]' 
-                      : 'shadow-xl opacity-90 hover:opacity-100 hover:ring-1 hover:ring-stone-600'
-                  }`}
+                  className={`absolute rounded-[26px] overflow-hidden cursor-pointer transition-shadow duration-300 ${isCenter
+                    ? 'ring-2 ring-[#A38257] shadow-[0_15px_45px_rgba(0,0,0,0.95)]'
+                    : 'shadow-xl opacity-90 hover:opacity-100 hover:ring-1 hover:ring-stone-600'
+                    }`}
                   style={{
                     width: 'clamp(145px, 15vw, 175px)',
                     aspectRatio: '1 / 1',
@@ -299,9 +298,9 @@ export default function HaloCarousel({ onOpenBooking }) {
         {/* MOBILE VIEW (< md): 100% MANUAL STRAIGHT-LINE SCROLL (NO AUTO SCROLL) */}
         {/* ======================================================== */}
         <div className="md:hidden flex flex-col justify-center my-auto py-2">
-          
+
           {/* Straight Horizontal Swipe Track with Low Gap (12px) - Manual Scroll ONLY */}
-          <div 
+          <div
             ref={mobileScrollRef}
             onScroll={handleMobileScroll}
             className="flex items-center gap-3 overflow-x-auto snap-x snap-mandatory py-3 px-4 no-scrollbar scroll-smooth"
@@ -370,7 +369,7 @@ export default function HaloCarousel({ onOpenBooking }) {
 
         {/* Bottom Navigation & Controls */}
         <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between shrink-0 pb-1">
-          
+
           {/* Slide counter */}
           <div className="text-[11px] font-sans text-stone-500 uppercase tracking-widest">
             <span>{String(selectedIdx + 1).padStart(2, '0')}</span>
@@ -395,11 +394,10 @@ export default function HaloCarousel({ onOpenBooking }) {
                   key={idx}
                   onClick={() => snapToCard(idx)}
                   aria-label={`Jump to piece ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full ${
-                    idx === selectedIdx
-                      ? 'w-5 sm:w-6 h-1.5 bg-[#A38257]'
-                      : 'w-1.5 h-1.5 bg-stone-700 hover:bg-stone-500'
-                  }`}
+                  className={`transition-all duration-300 rounded-full ${idx === selectedIdx
+                    ? 'w-5 sm:w-6 h-1.5 bg-[#A38257]'
+                    : 'w-1.5 h-1.5 bg-stone-700 hover:bg-stone-500'
+                    }`}
                 />
               ))}
             </div>
